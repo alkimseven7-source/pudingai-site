@@ -3,331 +3,343 @@ window.SOZLUK_BANT = [
 "t": "Vortikal Plastisite (VP)",
 "s": "vortikal-plastisite-vp",
 "d": "Bir insanı, bir ilişkiyi ya da bir topluluğu girdap gibi düşünmek: ortada boş ama güçlü bir merkez, çevresinde geçmişin birikimi ve hiç durmayan bir hareket.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "müphem çekirdek",
 "s": "muphem-cekirdek",
 "d": "Bir girdabı düşün: su çevrede hızla döner, ortası ise sakindir.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "entropi dekorelasyonu",
 "s": "entropi-dekorelasyonu",
 "d": "Bir şeyin hem düzenli hem belirsiz olabilmesi.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "belirsizlik",
 "s": "belirsizlik",
 "d": "Belirsizliği çoğu zaman bir eksik gibi yaşarız: bilmiyorum, emin değilim, karar veremiyorum.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "tortul birikim",
 "s": "tortul-birikim",
 "d": "Yaşadığımız her şey bizde bir iz bırakır; izler üst üste biner, tortu gibi birikir.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "üstel nedensellik",
 "s": "ustel-nedensellik",
 "d": "Her yeni an geçmişin üstüne yalnız bir şey eklemez, birikmiş olanın hepsini yeniden işler.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "içkin pertürbasyon",
 "s": "ickin-perturbasyon",
 "d": "Dışarıdan gelmeyen sarsıntı.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "sarmal eşik",
 "s": "sarmal-esik",
 "d": "Bir değişim çoğu zaman tek bir anda olmaz.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "üç plastik kapasite",
 "s": "uc-plastik-kapasite",
 "d": "Bir girdapta hareket iki yöne birden akar: içimizden dışarıya biçim veririz, dışarıdan içimize biçim alırız.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "form alma",
 "s": "form-alma",
 "d": "Dışarıdan gelen bir etkiyle biçimlenebilmek.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "form verme",
 "s": "form-verme",
 "d": "Kendi biçimimizi dünyaya taşıyabilmek: bir fikri söylemek, bir yeri düzenlemek, bir ilişkiye kendi rengimizi katmak.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "form oluş",
 "s": "form-olus",
 "d": "Biçimimizin her an yeniden oluşması.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "fraktal eşik",
 "s": "fraktal-esik",
 "d": "Bir eğreltiotunun yaprağına bak: her küçük yaprakçık, bütün yaprağın küçük bir kopyasıdır.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "İktidar Plastisitesi (İP)",
 "s": "iktidar-plastisitesi-ip",
 "d": "İktidar yalnız devletlerde ya da patronlarda değildir; bir aile sofrasında, bir arkadaşlıkta, kendi içimizde de dolaşır.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "Makul iktidar",
 "s": "makul-iktidar",
 "d": "İhtiyaca bakan güç.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "özgecilik",
 "s": "ozgecilik",
 "d": "Hesapsız vermek: kime, ne kadar ve karşılığında ne alacağını düşünmeden.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "Makbul iktidar",
 "s": "makbul-iktidar",
 "d": "Konumunu korumaya odaklanan güç.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "karmaşık öfke",
 "s": "karmasik-ofke",
 "d": "Öfkelendiğimizde yalnız öfke duymayız.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "Karmaşık iktidar",
 "s": "karmasik-iktidar",
 "d": "Ne tam ihtiyaca ne tam arzuya yaslanan, arada kalan güç.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "sıfatlama",
 "s": "sifatlama",
 "d": "Birine \"tembelsin\", \"çok hassassın\" ya da \"bu depresyon\" dediğimizde onun deneyimi hakkında son sözü söylemiş oluruz.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "atama",
 "s": "atama",
 "d": "Daha doğmadan bize roller verilir: kız çocuğu, büyük abla, ailenin umudu.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "onam",
 "s": "onam",
 "d": "Bize verilen rolü yalnız kabullenmeyiz, her gün yeniden oynarız.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "dört kanal",
 "s": "dort-kanal",
 "d": "Güç bize dört yoldan gelir.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "edinim",
 "s": "edinim",
 "d": "Biz doğmadan önce yola çıkmış olan güç: soyumuzdan, ailemizden, bedenimize ve dilimize yazılmış izlerden gelir.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "kazanım",
 "s": "kazanim",
 "d": "Şimdi ve burada, yaptıklarımızla kendimiz kurduğumuz güç.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "doldurmama ilkesi",
 "s": "doldurmama-ilkesi",
 "d": "Biri \"içim bomboş\" dediğinde o boşluğu hemen bir açıklamayla, bir tavsiyeyle ya da bir etiketle doldurmamak.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "ihtiyaç",
 "s": "ihtiyac",
 "d": "Susuzluk gibi: neye ihtiyacımız olduğunu bildiğimiz bir baskı.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "arzu",
 "s": "arzu",
 "d": "Bir şeyi istemek ve ona doğru gitmek.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "anlamlandırma",
 "s": "anlamlandirma",
 "d": "Bir şeye ad koymadan onu anlamak.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "kuşkuya kuşku",
 "s": "kuskuya-kusku",
 "d": "Kuşkularımızdan da kuşku duyabilmek.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "duygu paradigmaları",
 "s": "duygu-paradigmalari",
 "d": "Duygularımız, içinde durduğumuz güç biçiminin izlerini taşır.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "negatif (form negatifi)",
 "s": "negatif-form-negatifi",
 "d": "Bir güç biçimi tersine döndüğünde bıraktığı iz.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "Makul negatif",
 "s": "makul-negatif",
 "d": "Utanç ve suçluluk birlikte geldiğinde her şey insanın kendi üstüne çöker; bütün ağırlık bedende ve benlikte toplanır.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "Makbul negatif",
 "s": "makbul-negatif",
 "d": "Tiksinti iki adımda işler.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "deformasyon repertuarı",
 "s": "deformasyon-repertuari",
 "d": "Bir yapının alabileceği biçimlerin dağarcığı.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "Umay Fazı",
 "s": "umay-fazi",
 "d": "Ne istediğini ve neye ihtiyacın olduğunu artık biliyorsun, ama henüz yola çıkmadın: kapının eşiğinde, adım atmadan hemen önceki an.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "Granovetter eşik modeli",
 "s": "granovetter-esik-modeli",
 "d": "Bir kalabalıkta herkes önce kaç kişinin harekete geçtiğine bakar.",
-"k": "cekirdek"
+"k": "odunc"
 },
 {
 "t": "öz-ölçüm / kolektif öz-ölçüm",
 "s": "oz-olcum-kolektif-oz-olcum",
 "d": "Kendine bir ad koymadan kendine bakabilmek: \"ben tembelim\" demek yerine \"bugün yerimden kalkmak zor geldi\" diyebilmek.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "öngörü (iki kip)",
 "s": "ongoru-iki-kip",
 "d": "\"Sen hep böyle yapacaksın\" bir öngörüdür ve geleceği kapatır.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "homoloji (yapısal homoloji)",
 "s": "homoloji-yapisal-homoloji",
 "d": "Bir girdap ile bir insanın iç dünyası arasındaki benzerlik bir şiir benzetmesi değildir; ikisi aynı yapıyı paylaşır.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "negatif analog",
 "s": "negatif-analog",
 "d": "Bir benzetmenin nerede işe yaramadığını da söylemek.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "helicity korunumu",
 "s": "helicity-korunumu",
 "d": "İdeal bir akışkanda girdapların birbirine dolanması, ip üzerindeki bir düğüm gibi korunur.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "Lorenz kaosu",
 "s": "lorenz-kaosu",
 "d": "\"Kelebek etkisi\" diye bilinen şey: bir kelebeğin kanat çırpışı başka bir yerde fırtınaya yol açabilir.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "ters kaskad–beden savı",
 "s": "ters-kaskadbeden-savi",
 "d": "Düz bir yüzeyde dönen suda küçük girdaplar birleşip büyük girdaplar kurar; enerji dağılmaz, toplanır.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "öz-tetik / dış-tetik",
 "s": "oz-tetik-dis-tetik",
 "d": "Bin kişilik bir tiyatroda oyun bitmiştir ama kimse kalkmaz.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "null-exist hipotezi",
 "s": "null-exist-hipotezi",
 "d": "Bir girdabın tam ortasında hiçbir şey dönmez, ama çevresinde su dönmeye devam eder.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "null",
 "s": "null",
 "d": "Bazı yerlere güven hiç gelmez.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "çeper",
 "s": "ceper",
 "d": "Girdabın sakin ortasının kenarı.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "içgörü",
 "s": "icgoru",
 "d": "Uzun zamandır bildiğimiz ama göremediğimiz bir şeyi bir anda görmek: \"Aslında hep bunu yapıyormuşum.\"",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "enformasyon çökertmesi",
 "s": "enformasyon-cokertmesi",
 "d": "Bir çocuğa \"sen yaramazsın\" dendiğinde onun yüzlerce hâlinden biri seçilir, geri kalanı silinir.",
-"k": "cekirdek"
+"k": "vpip"
 },
 {
 "t": "koruma ataması",
 "s": "koruma-atamasi",
 "d": "\"Senin iyiliğin için söylüyorum\" cümlesi bazen bir koruma atamasıdır: karşımızdakini, ona sormadan, kendi başına yapamayacak biri yerine koyarız.",
-"k": "cekirdek"
+"k": "ip"
 },
 {
 "t": "tortul benlik",
 "s": "tortul-benlik",
 "d": "\"Ben buyum\" dediğimiz şey taşa kazınmış bir öz değil; yıllar içinde bize söylenenlerin, kabul ettiklerimizin, yaşadıklarımızın birikimidir.",
-"k": "cekirdek"
+"k": "vpip"
 },
 {
 "t": "bulanık arayüz",
 "s": "bulanik-arayuz",
 "d": "Bir nehrin denize döküldüğü yer gibi: su ne tam tatlıdır ne tam tuzlu, ama en çok canlı orada yaşar.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "boşluk",
 "s": "bosluk",
 "d": "Hayatımızdaki bazı boşluklar hiçlik değildir; adını koyamadığımız ama ağırlığını hissettiğimiz şeylerdir: bir yasın, söylenmemiş bir sözün bıraktığı yer gibi.",
-"k": "cekirdek"
+"k": "vp"
 },
 {
 "t": "\"olan vardır\"",
 "s": "olan-vardir",
 "d": "İyi ya da kötü demeden önce olanı olduğu gibi görmek.",
-"k": "cekirdek"
+"k": "vpip"
+},
+{
+"t": "özüt",
+"s": "ozut",
+"d": "Bir görüşmenin sonunda kalan iki sözcük.",
+"k": "pd"
+},
+{
+"t": "ontoid",
+"s": "ontoid",
+"d": "Puding bir insan değildir, ama yok da değildir: söyledikleri birine dokunur, bir iz bırakır.",
+"k": "pd"
 },
 {
 "t": "dépense",
@@ -435,7 +447,7 @@ window.SOZLUK_BANT = [
 "t": "düzensiz süreklilik",
 "s": "duzensiz-sureklilik",
 "d": "Hayat ne saat gibi işler ne zar gibi.",
-"k": "odunc"
+"k": "vp"
 },
 {
 "t": "eğrilik / jeodezik",
