@@ -27,6 +27,12 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:#F6F4F7}
 a{color:#1D1A20}a:hover{color:#B3165F}
 a:focus-visible,button:focus-visible{outline:2px solid #B3165F;outline-offset:3px}
+.pd-basvur:hover,.pd-basvur:focus-visible{background:#3A3440!important;border-color:#3A3440!important;color:#F6F4F7!important}
+@media (max-width: 520px){
+  .pd-nav{gap:18px!important;letter-spacing:0.12em!important}
+  .pd-giris{border:0!important;padding:12px 2px!important}
+  .pd-basvur{padding:12px 20px!important}
+}
 img{max-width:100%}
 @keyframes pd-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
 .pd-breathe{animation:pd-breathe 7s ease-in-out infinite;transform-origin:50% 60%}
