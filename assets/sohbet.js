@@ -1,10 +1,10 @@
 /* Puding site modu: ana sayfadaki anonim sohbet barı (Alkım, 2026-11-05).
    Saydam açık gri bar; kutu yukarı açılır, arkasında logo; tek kapı "Selam! Ne Pudingisin?".
    Hiçbir şey saklanmaz: görüşme yalnız bu sayfanın belleğinde (yenilenince gider); çerez ve localStorage yok.
-   Kaşık: Puding uygun gördüğünde ya da 12. turda arayüz kaşığı gösterir → kayıt ekranı. */
+   Kaşık: Puding uygun gördüğünde ya da 16. turda arayüz kaşığı gösterir → kayıt ekranı. */
 (function () {
   "use strict";
-  var TURNSTILE_SITE_KEY = ""; // Alkım verecek (Cloudflare → Turnstile → site key); boşken yalnız yerel deneme
+  var TURNSTILE_SITE_KEY = "0x4AAAAAAF0u99NTOm2ZVM0R"; // herkese açık site anahtarı (Cloudflare Turnstile); gizli anahtar yalnız sunucuda
   var UC = /(^|\.)pudingai\.com$/.test(location.hostname) ? "https://demo.pudingai.com/api/site/mesaj" : "/api/site/mesaj";
   var KAPI = "Selam! Ne Pudingisin?";
   var ALT = "* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Kişisel bilgiler görüşmeye saklanmalıdır. 18+";
