@@ -2,13 +2,15 @@
    Saydam açık gri bar; kutu yukarı açılır, arkasında logo; tek kapı "Selam! Ne Pudingisin?".
    Sözlük sayfasındaki düğme /?sor=neli ile gelir: bar alanına "Neli pudingsin?" yazılı gelir, gönderme kişide.
    Hiçbir şey saklanmaz: görüşme yalnız bu sayfanın belleğinde (yenilenince gider); çerez ve localStorage yok.
-   Kaşık: Puding uygun gördüğünde ya da en geç 12. turda arayüz kaşığı gösterir → kayıt ekranı. */
+   Kaşık 9. turda kendiliğinden belirir; 12. turda kutu çıkar, bar kapanır (kriz açıksa kapanmaz) → kayıt ekranı. */
 (function () {
   "use strict";
   var TURNSTILE_SITE_KEY = "0x4AAAAAAF0u99NTOm2ZVM0R"; // herkese açık site anahtarı (Cloudflare Turnstile); gizli anahtar yalnız sunucuda
   var UC = /(^|\.)pudingai\.com$/.test(location.hostname) ? "https://demo.pudingai.com/api/site/mesaj" : "/api/site/mesaj";
   var KAPI = "Selam! Ne Pudingisin?";
   var SOZLUK_SORUSU = "Neli pudingsin?";
+  var KUTU_ILK = "Burada tanışma kadar konuşabiliyoruz.", KUTU_DOLU = "Bugünlük burada doluyuz.";
+  var KUTU_SONU = "Devam etmek istiyorsan kaşığa bas; kendi görüşmen başlasın. Puding şimdilik ücretsiz.";
   var ALT = "* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Ad, adres gibi kimlik bilgilerini yazmana gerek yok. 18+";
   var KAYIT = "https://demo.pudingai.com/?kayit";
   var KASIK_SVG = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><ellipse cx="12" cy="6.5" rx="4.2" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 11.5v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
@@ -57,16 +59,28 @@
       akis.appendChild(c);
     });
   }
-  function kasik(neden) {
-    if (kasikGosterildi) {
-      if (neden) { akis.querySelector(".pd-kasik span").textContent = neden; akis.scrollTop = akis.scrollHeight; }
-      return;
-    }
-    kasikGosterildi = true;
+  function kasikBagi(yazi) {
     var a = el("a", "pd-kasik"); a.href = KAYIT; a.rel = "noopener";
     a.innerHTML = KASIK_SVG + "<span></span>";
-    a.querySelector("span").textContent = neden || "devam etmek istiyorsan kaşığa bas";
-    akis.appendChild(a);
+    a.querySelector("span").textContent = yazi;
+    return a;
+  }
+  function kasik() {
+    if (kasikGosterildi) return;
+    kasikGosterildi = true;
+    akis.appendChild(kasikBagi("devam etmek istiyorsan kaşığa bas"));
+    akis.scrollTop = akis.scrollHeight;
+  }
+  // 12. turda ve günlük tavanda: kaşık düğmeli kutu; görüşmede tek kutu, önceki kaşık yerine geçer
+  function kutuAc(ilk) {
+    var eski = akis.querySelector(".pd-davet");
+    if (eski) { eski.querySelector("p").textContent = ilk + " " + KUTU_SONU; return; }
+    kasikGosterildi = true;
+    Array.prototype.forEach.call(akis.querySelectorAll(".pd-kasik"), function (k) { k.remove(); });
+    var d = el("div", "pd-davet");
+    d.appendChild(el("p", null, ilk + " " + KUTU_SONU));
+    d.appendChild(kasikBagi("kaşığa bas"));
+    akis.appendChild(d);
     akis.scrollTop = akis.scrollHeight;
   }
   function kilitle() { bitti = true; girdi.disabled = true; form.classList.add("pd-kilitli"); }
@@ -109,10 +123,11 @@
           if (c.kod === 200) {
             if (j.yanit) balon("puding", j.yanit);
             kartlar(j.kartlar);
-            if (j.kasik) kasik();
+            if (j.kutu) kutuAc(KUTU_ILK);
+            else if (j.kasik) kasik();
             if (j.tavan || j.kapali) kilitle();
           } else if (j.hata === "butce" || j.hata === "sinir") {
-            if (j.hata === "butce") { kasik("Bugünlük burada doluyuz; devam etmek istiyorsan kaşığa bas."); kilitle(); }
+            if (j.hata === "butce") { kutuAc(KUTU_DOLU); kilitle(); }
             else balon("puding", "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.");
           } else if (j.hata === "dogrulama") {
             tsJeton = null; balon("puding", "Doğrulama tamamlanamadı. Sayfayı yenileyip yeniden dene.");
