@@ -18,7 +18,7 @@
 <link rel="icon" type="image/png" href="/assets/puding-logo-128.png">
 <link rel="apple-touch-icon" href="/assets/puding-logo-128.png">
 <link rel="preload" href="/assets/fonts/nunito-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=9">
+<link rel="stylesheet" href="/assets/site.css?v=10">
 <style>
 .sz-main{max-width:1200px;margin:0 auto;padding:72px 24px 128px}
 .sz-ic{max-width:760px}
@@ -58,8 +58,8 @@
 <div style="background: #F6F4F7; color: #1D1A20; font-family: Nunito, sans-serif; min-height: 100vh">
 
 <!-- ÜST BAR -->
-<header style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
-<a href="/" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #1D1A20">
+<header class="pd-ust" style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
+<a class="pd-logo" href="/" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #1D1A20">
 <img src="/assets/puding-logo-128.png" alt="Puding AI ana sayfa" width="33" height="40" style="width: 33px; height: 40px; display: block">
 <div style="display: flex; flex-direction: column; gap: 2px">
 <span style="font-family: Nunito, sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.01em">Puding AI</span>
@@ -199,7 +199,7 @@
     let n = 0;
     maddeler.forEach((m, i) => { const g = !q || metinler[i].includes(q); m.hidden = !g; if (g) n++; });
     document.querySelectorAll("section.sz-bolum").forEach((s) => { s.hidden = !s.querySelector(".sz-madde:not([hidden])"); });
-    sayac.textContent = q ? `${n} terim bulundu` : `${maddeler.length} terim`;
+    sayac.textContent = (q ? "{n} terim bulundu" : "{n} terim").replace("{n}", q ? n : maddeler.length);
     bos.hidden = n > 0;
   }
   girdi.addEventListener("input", suz);
@@ -216,8 +216,9 @@
   hedefeGit();
 })();
 </script>
-<!-- Ziyaretçi sayacı: GoatCounter (çerez yok, IP saklanmaz; yalnız toplu sayı). Alkım, 2026-11-05 -->
 <script src="/assets/menu.js?v=1" defer></script>
+<a class="pd-kapi pd-kapi-ikonlu pd-sor" href="/?sor=neli">Puding'in neli olduğunu sor<svg class="pd-kapi-ikon" viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#1D1A20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 25h22"/><path d="M8 25c0-9 3.5-14 8-14s8 5 8 14"/><path d="M16 15.5c1.6 0 2.4 1 2.4 2.1 0 1.3-1.1 2.1-2.3 2.1-1.5 0-2.6-1.1-2.6-2.6 0-2 1.6-3.4 3.6-3.3" stroke="#B3165F"/></svg></a>
+<!-- Ziyaretçi sayacı: GoatCounter (çerez yok, IP saklanmaz; yalnız toplu sayı). Alkım, 2026-11-05 -->
 <script data-goatcounter="https://pudingai.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

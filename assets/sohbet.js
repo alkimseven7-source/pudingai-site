@@ -1,17 +1,14 @@
-/* Puding site modu: anonim sohbet barı (Alkım, 2026-11-05).
-   İki biçim: ana sayfa (kapı "Selam! Ne Pudingisin?") ve sözlük (betikte data-bicim="sozluk"; düğme "Puding'in neli olduğunu sor").
-   Saydam açık gri bar; kutu yukarı açılır, arkasında logo; tek kapı.
+/* Puding site modu: ana sayfadaki anonim sohbet barı (Alkım, 2026-11-05).
+   Saydam açık gri bar; kutu yukarı açılır, arkasında logo; tek kapı "Selam! Ne Pudingisin?".
+   Sözlük sayfasındaki düğme /?sor=neli ile gelir: bar alanına "Neli pudingsin?" yazılı gelir, gönderme kişide.
    Hiçbir şey saklanmaz: görüşme yalnız bu sayfanın belleğinde (yenilenince gider); çerez ve localStorage yok.
-   Kaşık: Puding uygun gördüğünde ya da 16. turda arayüz kaşığı gösterir → kayıt ekranı. */
+   Kaşık: Puding uygun gördüğünde ya da en geç 12. turda arayüz kaşığı gösterir → kayıt ekranı. */
 (function () {
   "use strict";
   var TURNSTILE_SITE_KEY = "0x4AAAAAAF0u99NTOm2ZVM0R"; // herkese açık site anahtarı (Cloudflare Turnstile); gizli anahtar yalnız sunucuda
   var UC = /(^|\.)pudingai\.com$/.test(location.hostname) ? "https://demo.pudingai.com/api/site/mesaj" : "/api/site/mesaj";
-  var betik = document.currentScript;
-  var SOZLUK = !!betik && betik.getAttribute("data-bicim") === "sozluk";
-  var KAPI = SOZLUK ? "Neli pudingsin?" : "Selam! Ne Pudingisin?";   // düğmeye basınca giden soru
-  var KAPI_ETIKET = SOZLUK ? "Puding'in neli olduğunu sor" : KAPI;   // düğmenin yazısı
-  var KAPI_IKON = '<svg class="pd-kapi-ikon" viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#1D1A20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 25h22"/><path d="M8 25c0-9 3.5-14 8-14s8 5 8 14"/><path d="M16 15.5c1.6 0 2.4 1 2.4 2.1 0 1.3-1.1 2.1-2.3 2.1-1.5 0-2.6-1.1-2.6-2.6 0-2 1.6-3.4 3.6-3.3" stroke="#B3165F"/></svg>';
+  var KAPI = "Selam! Ne Pudingisin?";
+  var SOZLUK_SORUSU = "Neli pudingsin?";
   var ALT = "* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Ad, adres gibi kimlik bilgilerini yazmana gerek yok. 18+";
   var KAYIT = "https://demo.pudingai.com/?kayit";
   var KASIK_SVG = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><ellipse cx="12" cy="6.5" rx="4.2" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 11.5v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
@@ -37,8 +34,7 @@
     '<p class="pd-alt"></p>';
   var kutu = kok.querySelector(".pd-kutu"), akis = kok.querySelector(".pd-akis"), form = kok.querySelector(".pd-bar"),
       girdi = kok.querySelector("textarea"), kapi = kok.querySelector(".pd-kapi"), kapilar = kok.querySelector(".pd-kapilar");
-  kapi.textContent = KAPI_ETIKET;
-  if (SOZLUK) { kapi.classList.add("pd-kapi-ikonlu"); kapi.insertAdjacentHTML("beforeend", KAPI_IKON); }
+  kapi.textContent = KAPI;
   kok.querySelector(".pd-alt").textContent = ALT;
 
   function ac() { kutu.hidden = false; kok.classList.add("pd-acik"); }
@@ -62,7 +58,10 @@
     });
   }
   function kasik(neden) {
-    if (kasikGosterildi) return;
+    if (kasikGosterildi) {
+      if (neden) { akis.querySelector(".pd-kasik span").textContent = neden; akis.scrollTop = akis.scrollHeight; }
+      return;
+    }
     kasikGosterildi = true;
     var a = el("a", "pd-kasik"); a.href = KAYIT; a.rel = "noopener";
     a.innerHTML = KASIK_SVG + "<span></span>";
@@ -100,7 +99,7 @@
     var bekle = el("div", "pd-balon pd-puding pd-bekle"); bekle.appendChild(el("p", null, "…")); akis.appendChild(bekle);
     turnstile(function () {
       fetch(UC, {method: "POST", headers: {"Content-Type": "application/json"},
-                 body: JSON.stringify({oturum: oturum, metin: metin, turnstile: oturum ? null : tsJeton, bicim: SOZLUK ? "sozluk" : "ana"})})
+                 body: JSON.stringify({oturum: oturum, metin: metin, turnstile: oturum ? null : tsJeton})})
         .then(function (r) { return r.json().then(function (j) { return {kod: r.status, j: j}; }); })
         .then(function (c) {
           bekle.remove();
@@ -113,8 +112,8 @@
             if (j.kasik) kasik();
             if (j.tavan || j.kapali) kilitle();
           } else if (j.hata === "butce" || j.hata === "sinir") {
-            balon("puding", j.hata === "butce" ? "Puding bugünlük burada dinleniyor." : "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.");
-            if (j.hata === "butce") { kasik(); kilitle(); }
+            if (j.hata === "butce") { kasik("Bugünlük burada doluyuz; devam etmek istiyorsan kaşığa bas."); kilitle(); }
+            else balon("puding", "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.");
           } else if (j.hata === "dogrulama") {
             tsJeton = null; balon("puding", "Doğrulama tamamlanamadı. Sayfayı yenileyip yeniden dene.");
           } else {
@@ -135,4 +134,12 @@
 
   document.body.classList.add("pd-sohbet-var");
   (document.getElementById("pd-sohbet-yeri") || document.body).appendChild(kok);
+
+  // Sözlükten gelen: soru bar alanında hazır durur, kişi gönderir; adres çubuğundan kalkar
+  if (new URLSearchParams(location.search).get("sor") === "neli") {
+    girdi.value = SOZLUK_SORUSU; kapilar.hidden = true;
+    history.replaceState(null, "", location.pathname + location.hash);
+    girdi.dispatchEvent(new Event("input"));
+    girdi.focus({preventScroll: true});
+  }
 })();

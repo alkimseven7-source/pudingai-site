@@ -58,7 +58,9 @@ img{max-width:100%}
 .pd-kapilar{display:flex;justify-content:center}.pd-kapilar[hidden]{display:none}
 .pd-kapi{font:inherit;font-size:14px;font-weight:600;color:#1D1A20;background:rgba(246,244,247,.9);border:1px solid #DCD6E0;border-radius:999px;padding:9px 16px;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .pd-kapi:hover{border-color:#1D1A20}
-.pd-kapi-ikonlu{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 16px}
+.pd-kapi-ikonlu{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 16px;text-decoration:none}
+body:has(.pd-sor){padding-bottom:76px}
+.pd-sor{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:40;white-space:nowrap}
 .pd-kapi-ikon{flex:none;transform-origin:50% 80%}
 .pd-kapi:hover .pd-kapi-ikon,.pd-kapi:focus-visible .pd-kapi-ikon{animation:pd-sallan .7s ease-in-out}
 @keyframes pd-sallan{0%,100%{transform:rotate(0)}25%{transform:rotate(-7deg)}60%{transform:rotate(6deg)}85%{transform:rotate(-2deg)}}
@@ -70,7 +72,7 @@ img{max-width:100%}
 .pd-alt{margin:0;align-self:center;text-align:center;font-size:11px;line-height:1.4;color:#8A8590;background:rgba(246,244,247,.88);border-radius:8px;padding:2px 8px}
 .pd-gizli{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 body.pd-sohbet-var{padding-bottom:150px}
-@media (prefers-reduced-motion: reduce){.pd-sohbet *{transition:none!important;animation:none!important}}
+@media (prefers-reduced-motion: reduce){.pd-sohbet *,.pd-sor *{transition:none!important;animation:none!important}}
 @media (max-width: 720px){
   h1{font-size:60px!important}
   blockquote{font-size:48px!important}
