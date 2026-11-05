@@ -42,9 +42,17 @@
   function ac() { kutu.hidden = false; kok.classList.add("pd-acik"); }
   kok.querySelector(".pd-kapat").addEventListener("click", function () { kutu.hidden = true; kok.classList.remove("pd-acik"); });
 
-  function balon(kim, metin) {
+  function ozutlu(p, ozut) {  // özüt kalın italik görünür; metin textContent kalır
+    var e = el("p"), i = ozut ? p.toLocaleLowerCase("tr").indexOf(ozut.toLocaleLowerCase("tr")) : -1;
+    if (i < 0) { e.textContent = p; return e; }
+    e.appendChild(document.createTextNode(p.slice(0, i)));
+    e.appendChild(el("strong", "pd-ozut", p.slice(i, i + ozut.length)));
+    e.appendChild(document.createTextNode(p.slice(i + ozut.length)));
+    return e;
+  }
+  function balon(kim, metin, ozut) {
     var b = el("div", "pd-balon pd-" + kim);
-    String(metin || "").split(/\n{2,}/).forEach(function (p) { if (p.trim()) b.appendChild(el("p", null, p.trim())); });
+    String(metin || "").split(/\n{2,}/).forEach(function (p) { if (p.trim()) b.appendChild(ozutlu(p.trim(), ozut)); });
     akis.appendChild(b);
     akis.scrollTop = akis.scrollHeight;
     return b;
@@ -72,12 +80,13 @@
     akis.scrollTop = akis.scrollHeight;
   }
   // 12. turda ve günlük tavanda: kaşık düğmeli kutu; görüşmede tek kutu, önceki kaşık yerine geçer
-  function kutuAc(ilk) {
+  function kutuAc(ilk, ozut) {
     var eski = akis.querySelector(".pd-davet");
-    if (eski) { eski.querySelector("p").textContent = ilk + " " + KUTU_SONU; return; }
+    if (eski) { eski.querySelector("p:last-of-type").textContent = ilk + " " + KUTU_SONU; return; }
     kasikGosterildi = true;
     Array.prototype.forEach.call(akis.querySelectorAll(".pd-kasik"), function (k) { k.remove(); });
     var d = el("div", "pd-davet");
+    if (ozut) { var o = el("p", null, "Bugünkü özütün: "); o.appendChild(el("strong", "pd-ozut", ozut)); d.appendChild(o); }
     d.appendChild(el("p", null, ilk + " " + KUTU_SONU));
     d.appendChild(kasikBagi("kaşığa bas"));
     akis.appendChild(d);
@@ -121,13 +130,13 @@
           if (j.oturum) oturum = j.oturum;
           if (j.gonderilen) benim.querySelector("p").textContent = j.gonderilen; // kişisel bilgi maskeli hâliyle
           if (c.kod === 200) {
-            if (j.yanit) balon("puding", j.yanit);
+            if (j.yanit) balon("puding", j.yanit, j.ozut);
             kartlar(j.kartlar);
-            if (j.kutu) kutuAc(KUTU_ILK);
+            if (j.kutu) kutuAc(KUTU_ILK, j.kutu_ozut);
             else if (j.kasik) kasik();
             if (j.tavan || j.kapali) kilitle();
           } else if (j.hata === "butce" || j.hata === "sinir") {
-            if (j.hata === "butce") { kutuAc(KUTU_DOLU); kilitle(); }
+            if (j.hata === "butce") { kutuAc(KUTU_DOLU, j.kutu_ozut); kilitle(); }
             else balon("puding", "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.");
           } else if (j.hata === "dogrulama") {
             tsJeton = null; balon("puding", "Doğrulama tamamlanamadı. Sayfayı yenileyip yeniden dene.");
