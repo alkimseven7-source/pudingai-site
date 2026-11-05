@@ -8,6 +8,10 @@
 @font-face{font-family:'Nunito';font-style:normal;font-display:swap;font-weight:800;src:url(/assets/fonts/nunito-latin-800-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Nunito';font-style:italic;font-display:swap;font-weight:400;src:url(/assets/fonts/nunito-latin-ext-400-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Nunito';font-style:italic;font-display:swap;font-weight:400;src:url(/assets/fonts/nunito-latin-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Nunito';font-style:normal;font-display:swap;font-weight:500;src:url(/assets/fonts/nunito-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Nunito';font-style:normal;font-display:swap;font-weight:500;src:url(/assets/fonts/nunito-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Nunito';font-style:italic;font-display:swap;font-weight:700;src:url(/assets/fonts/nunito-latin-ext-700-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Nunito';font-style:italic;font-display:swap;font-weight:700;src:url(/assets/fonts/nunito-latin-700-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 body{font-family:Nunito,sans-serif}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -30,8 +34,9 @@ a:focus-visible,button:focus-visible{outline:2px solid #B3165F;outline-offset:3p
   .pd-basvur{padding:12px 13px!important}
 }
 img{max-width:100%}
-@keyframes pd-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
-.pd-breathe{animation:pd-breathe 12s ease-in-out infinite;transform-origin:50% 60%}
+@keyframes pd-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
+.pd-breathe{animation:pd-breathe 11s ease-in-out infinite;transform-origin:50% 60%}
+.pd-breathe{max-width:min(360px,calc((100vw - 32px)/1.09))!important}
 @media (prefers-reduced-motion: reduce){.pd-breathe{animation:none}#sz-box{transition:none!important}}
 /* site modu sohbet barı (Alkım, 2026-11-05) */
 .pd-sohbet{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(680px,calc(100% - 32px));z-index:40;padding:0 0 10px;font-family:Nunito,sans-serif;display:flex;flex-direction:column;align-items:stretch;gap:8px}
