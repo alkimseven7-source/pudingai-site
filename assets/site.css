@@ -76,6 +76,10 @@ body:has(.pd-sor){padding-bottom:76px}
 .pd-gizli{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 body.pd-sohbet-var{padding-bottom:150px}
 @media (prefers-reduced-motion: reduce){.pd-sohbet *,.pd-sor *{transition:none!important;animation:none!important}}
+/* Açılış (Alkım, 2026-11-05): alt satır başlıkla aynı genişlikte, tek satır. Nunito'da oran 0,391; başlık iki satıra düşerse
+   ya da sayfa taşarsa assets/acilis.js alt satırı başlığın gerçek genişliğine eşitler. */
+.pd-acilis-baslik{font-size:clamp(48px,9vw,84px)!important}
+.pd-acilis-alt{font-size:clamp(18.7px,3.52vw,32.8px);white-space:nowrap}
 @media (max-width: 720px){
   h1{font-size:60px!important}
   blockquote{font-size:48px!important}
