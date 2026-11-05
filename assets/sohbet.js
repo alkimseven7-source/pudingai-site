@@ -2,7 +2,7 @@
    Saydam açık gri bar; kutu yukarı açılır, arkasında logo; tek kapı "Selam! Ne Pudingisin?".
    Sözlük sayfasındaki düğme /?sor=neli ile gelir: bar alanına "Neli pudingsin?" yazılı gelir, gönderme kişide.
    Hiçbir şey saklanmaz: görüşme yalnız bu sayfanın belleğinde (yenilenince gider); çerez ve localStorage yok.
-   Kaşık 9. turda kendiliğinden belirir; 12. turda kutu çıkar, bar kapanır (kriz açıksa kapanmaz) → kayıt ekranı. */
+   Kaşık 9. turda kendiliğinden belirir; 12. turda kutu çıkar, sonra yalnız kriz yanıt alır → kayıt ekranı. */
 (function () {
   "use strict";
   var TURNSTILE_SITE_KEY = "0x4AAAAAAF0u99NTOm2ZVM0R"; // herkese açık site anahtarı (Cloudflare Turnstile); gizli anahtar yalnız sunucuda
@@ -134,7 +134,7 @@
             kartlar(j.kartlar);
             if (j.kutu) kutuAc(KUTU_ILK, j.kutu_ozut);
             else if (j.kasik) kasik();
-            if (j.tavan || j.kapali) kilitle();
+            if (j.kapali) kilitle();  // 12. turda yazı alanı açık kalır: mesaj kriz sınıflandırıcısından geçer
           } else if (j.hata === "butce" || j.hata === "sinir") {
             if (j.hata === "butce") kutuAc(KUTU_DOLU, j.kutu_ozut);  // yazı alanı açık kalır: yeni mesaj kriz sınıflandırıcısından geçer
             else balon("puding", "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.");
