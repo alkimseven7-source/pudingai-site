@@ -136,7 +136,7 @@
             else if (j.kasik) kasik();
             if (j.tavan || j.kapali) kilitle();
           } else if (j.hata === "butce" || j.hata === "sinir") {
-            if (j.hata === "butce") { kutuAc(KUTU_DOLU, j.kutu_ozut); kilitle(); }
+            if (j.hata === "butce") kutuAc(KUTU_DOLU, j.kutu_ozut);  // yazı alanı açık kalır: yeni mesaj kriz sınıflandırıcısından geçer
             else balon("puding", "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.");
           } else if (j.hata === "dogrulama") {
             tsJeton = null; balon("puding", "Doğrulama tamamlanamadı. Sayfayı yenileyip yeniden dene.");
