@@ -19,7 +19,7 @@ body{margin:0;background:#F6F4F7}
 a{color:#1D1A20}a:hover{color:#B3165F}
 a:focus-visible,button:focus-visible{outline:2px solid #B3165F;outline-offset:3px}
 .pd-basvur:hover,.pd-basvur:focus-visible{background:#3A3440!important;border-color:#3A3440!important;color:#F6F4F7!important}
-/* İNDİR (Alkım, 2026-11-05): 64 px koyu dolu çember, beyaz kalın yazı; demo.pudingai.com/?kur */
+/* İNDİR (Alkım, 2026-11-05): 64 px koyu dolu çember, beyaz kalın yazı; pudingai.com/odam?kur */
 .pd-indir{flex:none;width:64px;height:64px;border-radius:50%;background:#1D1A20;border:2px solid #1D1A20;color:#FFFFFF!important;
   display:inline-flex;align-items:center;justify-content:center;font-family:Nunito,sans-serif;font-size:12px;font-weight:800;
   letter-spacing:0.06em;text-decoration:none!important;line-height:1}

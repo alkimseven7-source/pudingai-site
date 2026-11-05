@@ -6,13 +6,13 @@
 (function () {
   "use strict";
   var TURNSTILE_SITE_KEY = "0x4AAAAAAF0u99NTOm2ZVM0R"; // herkese açık site anahtarı (Cloudflare Turnstile); gizli anahtar yalnız sunucuda
-  var UC = /(^|\.)pudingai\.com$/.test(location.hostname) ? "https://demo.pudingai.com/api/site/mesaj" : "/api/site/mesaj";
+  var UC = "/api/site/mesaj";
   var KAPI = "Selam! Ne Pudingisin?";
   var SOZLUK_SORUSU = "Neli pudingsin?";
   var KUTU_ILK = "Burada tanışma kadar konuşabiliyoruz.", KUTU_DOLU = "Bugünlük burada doluyuz.";
   var KUTU_SONU = "Devam etmek istiyorsan kaşığa bas; kendi görüşmen başlasın. Puding şimdilik ücretsiz.";
   var ALT = "* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Ad, adres gibi kimlik bilgilerini yazmana gerek yok. 18+";
-  var KAYIT = "https://demo.pudingai.com/?kayit";
+  var KAYIT = "/odam?kayit";
   var KASIK_SVG = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><ellipse cx="12" cy="6.5" rx="4.2" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 11.5v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
 
   var oturum = null, mesgul = false, bitti = false, kasikGosterildi = false, tsJeton = null, tsBekleyen = [];

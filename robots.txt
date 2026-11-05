@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /odam
+Disallow: /api/
 Sitemap: https://pudingai.com/sitemap.xml
