@@ -104,5 +104,5 @@ body.pd-sohbet-var{padding-bottom:150px}
 }
 @media (max-width: 900px){
   .pd-nots{flex-direction:column;align-items:flex-start!important;gap:10px!important}
-  .pd-serit-oge{font-size:min(34px,calc((100vw - 48px)/9.6))}
+  .pd-serit-oge{font-size:min(34px,calc((100vw - 48px)/10.1))}
 }
