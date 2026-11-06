@@ -35,7 +35,9 @@ a:focus-visible,button:focus-visible{outline:2px solid #B3165F;outline-offset:3p
 }
 img{max-width:100%}
 @keyframes pd-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
-.pd-breathe{animation:pd-breathe 11s ease-in-out infinite;transform-origin:50% 60%}
+/* Nefese ek renk çemberi (Alkım, 2026-11-06): 72 saniyede bir tur, doğrusal; hareketi azalt ayarında durur */
+@keyframes pd-renk{from{filter:hue-rotate(0deg)}to{filter:hue-rotate(360deg)}}
+.pd-breathe{animation:pd-breathe 11s ease-in-out infinite,pd-renk 72s linear infinite;transform-origin:50% 60%}
 .pd-breathe{max-width:min(360px,calc((100vw - 32px)/1.09))!important}
 @media (prefers-reduced-motion: reduce){.pd-breathe{animation:none}#sz-box{transition:none!important}}
 /* site modu sohbet barı (Alkım, 2026-11-05) */
@@ -78,12 +80,29 @@ body.pd-sohbet-var{padding-bottom:150px}
 @media (prefers-reduced-motion: reduce){.pd-sohbet *,.pd-sor *{transition:none!important;animation:none!important}}
 /* Açılış (Alkım, 2026-11-05): alt satır başlıkla aynı genişlikte, tek satır. Nunito'da oran 0,391; başlık iki satıra düşerse
    ya da sayfa taşarsa assets/acilis.js alt satırı başlığın gerçek genişliğine eşitler. */
-.pd-acilis-baslik{font-size:clamp(48px,9vw,84px)!important}
-.pd-acilis-alt{font-size:clamp(18.7px,3.52vw,32.8px);white-space:nowrap}
+:root{--pd-acilis:min(84px,max(9vw,min(48px,calc((100vw - 48px)/7.55))))}  /* telefonda başlık tek satıra sığacak kadar küçülür */
+.pd-acilis-baslik{font-size:var(--pd-acilis)!important;white-space:nowrap}
+.pd-acilis-alt{font-size:calc(var(--pd-acilis)*.391);white-space:nowrap}
+/* PUDİNG şeridi (Alkım, 2026-11-06): üç ifade, her biri tek satır; kutuyu assets/serit.js açar ve ekrana sığdırır */
+.pd-serit-kap{position:relative}
+.pd-serit-oge{display:block;min-height:44px;margin:0;padding:0;border:0;background:none;color:inherit;font:inherit;font-weight:500;font-size:min(34px,calc((100vw - 285px)/27));line-height:1.2;white-space:nowrap;cursor:pointer;text-align:left}
+.pd-serit-oge:focus-visible{outline:2px solid #B5136F;outline-offset:4px;border-radius:4px}
+.pd-ipucu{display:none;position:absolute;z-index:50;left:50%;bottom:calc(100% + 12px);width:min(320px,calc(100vw - 32px));box-sizing:border-box;padding:14px 16px;transform:translateX(calc(-50% + var(--pd-kay,0px)));background:#fff;color:#1D1A20;border-radius:14px;box-shadow:0 8px 28px rgba(181,19,111,.2);font-family:Nunito,sans-serif;font-size:15px;font-weight:400;line-height:1.45;text-align:left;white-space:normal}
+.pd-ipucu::before{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px}  /* imleç kutuya geçerken kapanmasın */
+.pd-ipucu::after{content:"";position:absolute;left:calc(50% - var(--pd-kay,0px));bottom:-6px;width:12px;height:12px;margin-left:-6px;background:#fff;transform:rotate(45deg);box-shadow:3px 3px 6px rgba(181,19,111,.08)}
+.pd-serit-kap.pd-acik .pd-ipucu{display:block;animation:pd-ipucu .16s ease-out}
+.pd-serit-kap.pd-alta .pd-ipucu{bottom:auto;top:calc(100% + 12px)}
+.pd-serit-kap.pd-alta .pd-ipucu::before{bottom:auto;top:-14px}
+.pd-serit-kap.pd-alta .pd-ipucu::after{bottom:auto;top:-6px;box-shadow:-3px -3px 6px rgba(181,19,111,.08)}
+@keyframes pd-ipucu{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion: reduce){.pd-serit-kap.pd-acik .pd-ipucu{animation:none}}
 @media (max-width: 720px){
   h1{font-size:60px!important}
   blockquote{font-size:48px!important}
   section p[style*="font-size: 44px"]{font-size:34px!important}
   section p[style*="font-size: 56px"]{font-size:40px!important}
+}
+@media (max-width: 900px){
   .pd-nots{flex-direction:column;align-items:flex-start!important;gap:10px!important}
+  .pd-serit-oge{font-size:min(34px,calc((100vw - 48px)/9.6))}
 }
