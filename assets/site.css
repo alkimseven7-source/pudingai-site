@@ -76,7 +76,7 @@ body:has(.pd-sor){padding-bottom:76px}
 .pd-kilitli{opacity:.55}.pd-kilitli .pd-gonder{cursor:default}
 .pd-alt{margin:0;align-self:center;text-align:center;font-size:11px;line-height:1.4;color:#8A8590;background:rgba(246,244,247,.88);border-radius:8px;padding:2px 8px}
 .pd-gizli{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-body.pd-sohbet-var{padding-bottom:150px}
+body.pd-sohbet-var{padding-bottom:170px}
 @media (prefers-reduced-motion: reduce){.pd-sohbet *,.pd-sor *{transition:none!important;animation:none!important}}
 /* Açılış (Alkım, 2026-11-05): alt satır başlıkla aynı genişlikte, tek satır. Nunito'da oran 0,391; başlık iki satıra düşerse
    ya da sayfa taşarsa assets/acilis.js alt satırı başlığın gerçek genişliğine eşitler. */
@@ -123,7 +123,6 @@ header{position:relative}
 @media (max-width: 370px){html[lang=en] .pd-nav{gap:7px!important;letter-spacing:.02em!important}}
 html[lang=en] .pd-indir,html[lang=es] .pd-indir{font-size:11px;letter-spacing:.02em}
 html[lang=es] .pd-indir{font-size:10px}
-.pd-kasik-not{margin:0;font-size:12px;line-height:1.4;color:#5C5763}
 .pd-alt+.pd-alt{margin-top:-4px}
 /* EN ve ES'de bar altı iki satır: telefonda ilk ekran ve sayfa sonu kapanmasın */
 @media (max-width: 520px){
