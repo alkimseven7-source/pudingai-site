@@ -135,9 +135,9 @@ fetch("/api/kayit_durum", { credentials: "omit" })
     if (bekleyen) { clearTimeout(bekleyen); bekleyen = null; pencereAc(); }
   });
   addEventListener("appinstalled", function () { istem = null; isaret(true); kapat(); durumYaz(); });
-  // Chrome sekmeyi uygulama penceresine taşırsa site değil Odam açılsın; site sonradan menüden açılabilir
+  // Site her zaman siteyi gösterir (Alkım, 2026-11-07): Odam'a yalnız GİRİŞ ve AÇ ile gidilir, kendiliğinden geçiş yok
   var pencere = matchMedia("(display-mode: standalone)");
-  if (pencere.addEventListener) pencere.addEventListener("change", function (e) { if (e.matches) { isaret(true); location.replace("/odam"); } });
+  if (pencere.addEventListener) pencere.addEventListener("change", durumYaz);
   document.addEventListener("click", tiklandi, true);
   durumYaz();
 })();
