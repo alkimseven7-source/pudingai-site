@@ -109,6 +109,10 @@
     var a = el("a", "pd-kasik"); a.href = KAYIT; a.rel = "noopener";
     a.innerHTML = KASIK_SVG + "<span></span>";
     a.querySelector("span").textContent = yazi;
+    a.addEventListener("click", function () {  // yalnız sayı (Alkım, 2026-11-07): görüşme başına bir kez; sayfa beklemez
+      if (!oturum) return;
+      try { fetch(UC.replace("mesaj", "kasik"), {method: "POST", keepalive: true, headers: {"Content-Type": "application/json"}, body: JSON.stringify({oturum: oturum})}).catch(function () {}); } catch (e) {}
+    });
     return a;
   }
   function kasik() {
