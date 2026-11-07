@@ -10,21 +10,21 @@
   var TURNSTILE_SITE_KEY = "0x4AAAAAAF0u99NTOm2ZVM0R"; // herkese açık site anahtarı (Cloudflare Turnstile); gizli anahtar yalnız sunucuda
   var UC = "/api/site/mesaj";
   var METIN = {
-    tr: {kapi: "Selam! Ne Pudingisin?", yaz: "Puding'e yaz", yerTutucu: "Puding'e yaz…", gonder: "Gönder", kapat: "Kapat",
+    tr: {kapi: "Selam! Ne Pudingisin?", yaziyor: "Puding yazıyor", yaz: "Puding'e yaz", yerTutucu: "Puding'e yaz…", gonder: "Gönder", kapat: "Kapat",
          kutuIlk: "Burada tanışma kadar konuşabiliyoruz.", kutuDolu: "Bugünlük burada doluyuz.",
          kutuSonu: "Devam etmek istiyorsan kaşığa bas; kendi görüşmen başlasın. Puding şimdilik ücretsiz.",
          alt: ["Puding bir yapay zekâdır, hata yapabilir.", "* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Ad, adres gibi kimlik bilgilerini yazmana gerek yok. 18+"],
          kasik: "devam etmek istiyorsan kaşığa bas", kasikKisa: "kaşığa bas",
          dogrulama: "Doğrulama tamamlanamadı. Sayfayı yenileyip yeniden dene.", yavas: "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.",
          yanitYok: "Şu an yanıt üretilemedi. Biraz sonra tekrar dene.", baglanti: "Şu an bağlantı yok. Biraz sonra tekrar dene."},
-    en: {kapi: "Hi! What kind of pudding are you?", yaz: "Write to Puding", yerTutucu: "Write something to Puding…", gonder: "Send", kapat: "Close",
+    en: {kapi: "Hi! What kind of pudding are you?", yaziyor: "Puding is writing", yaz: "Write to Puding", yerTutucu: "Write something to Puding…", gonder: "Send", kapat: "Close",
          kutuIlk: "Here we can talk just enough to get acquainted.", kutuDolu: "We're full here for today.",
          yakinda: "Puding's app is coming in English soon.",
          alt: ["Puding is an AI and can make mistakes.",
                "* What you write is sent to Anthropic to generate a reply; it isn't stored by Puding. No need to share identifying details like your name or address. 18+"],
          dogrulama: "Verification didn't complete. Reload the page and try again.", yavas: "Let's slow down a little; you can write again in a moment.",
          yanitYok: "No reply could be generated right now. Try again in a moment.", baglanti: "No connection right now. Try again in a moment."},
-    es: {kapi: "¡Hola! ¿Qué clase de pudin eres?", yaz: "Escríbele a Puding", yerTutucu: "Escríbele algo a Puding…", gonder: "Enviar", kapat: "Cerrar",
+    es: {kapi: "¡Hola! ¿Qué clase de pudin eres?", yaziyor: "Puding está escribiendo", yaz: "Escríbele a Puding", yerTutucu: "Escríbele algo a Puding…", gonder: "Enviar", kapat: "Cerrar",
          kutuIlk: "Aquí podemos hablar lo justo para conocernos.", kutuDolu: "Por hoy estamos completos aquí.",
          yakinda: "La aplicación de Puding llegará pronto en español.",
          alt: ["Puding es una inteligencia artificial y puede cometer errores.",
@@ -40,6 +40,14 @@
   var KUTU_ILK = T.kutuIlk, KUTU_DOLU = T.kutuDolu, KUTU_SONU = T.kutuSonu;
   var KAYIT = "/odam?kayit";
   var KASIK_SVG = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><ellipse cx="12" cy="6.5" rx="4.2" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 11.5v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
+  // Düşünme ikonu (Alkım, 2026-11-07): girdap noktaları; dönüş CSS'te (site.css, hareketi azalt ayarında durur). Uygulamadakiyle aynı.
+  var GIRDAP = '<svg class="pd-girdap" viewBox="0 0 40 40" width="40" height="40" aria-hidden="true" focusable="false">' +
+    [0, 1, 2, 3, 4, 5, 6, 7].map(function (i) {
+      var t = i / 7, r = 2 + 13.5 * t, a = i * 55 * Math.PI / 180;
+      return '<circle cx="' + (20 + r * Math.cos(a)).toFixed(2) + '" cy="' + (20 + r * Math.sin(a)).toFixed(2) + '" r="' + (1.6 + 2.4 * t).toFixed(2) +
+        '" opacity="' + (0.35 + 0.65 * t).toFixed(2) + '" fill="#B3165F"/>';
+    }).join("") + "</svg>";
 
   var oturum = null, mesgul = false, bitti = false, kasikGosterildi = false, tsJeton = null, tsBekleyen = [];
 
@@ -159,7 +167,8 @@
     if (!metin || mesgul || bitti) return;
     mesgul = true; ac(); kapilar.hidden = true;
     var benim = balon("ben", metin);
-    var bekle = el("div", "pd-balon pd-puding pd-bekle"); bekle.appendChild(el("p", null, "…")); akis.appendChild(bekle);
+    var bekle = el("div", "pd-balon pd-puding pd-bekle"); bekle.innerHTML = GIRDAP;
+    bekle.setAttribute("role", "status"); bekle.setAttribute("aria-label", T.yaziyor); akis.appendChild(bekle); akis.scrollTop = akis.scrollHeight;
     turnstile(function () {
       fetch(UC, {method: "POST", headers: {"Content-Type": "application/json"},
                  body: JSON.stringify({oturum: oturum, metin: metin, turnstile: oturum ? null : tsJeton, dil: DIL})})

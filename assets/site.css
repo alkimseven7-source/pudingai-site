@@ -51,7 +51,10 @@ img{max-width:100%}
 .pd-balon p{margin:0 0 8px}.pd-balon p:last-child{margin:0}
 .pd-ben{align-self:flex-end;background:#1D1A20;color:#F6F4F7;padding:10px 14px;border-radius:14px 14px 4px 14px}
 .pd-puding{align-self:flex-start;padding:2px 2px}
-.pd-bekle{color:#5C5763;letter-spacing:.2em}
+.pd-bekle{line-height:0}
+.pd-girdap{display:block;animation:pd-girdap 1.8s linear infinite}
+@keyframes pd-girdap{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.pd-girdap{animation:none}}
 .pd-kart{align-self:stretch;border:1.5px solid #1D1A20;border-radius:12px;padding:12px 14px;background:#fff;font-size:15px}
 .pd-kart p{margin:6px 0 0}
 .pd-kasik{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;color:#1D1A20;text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px 8px 10px;border:1px solid #1D1A20;border-radius:999px;background:#fff}
