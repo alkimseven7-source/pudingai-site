@@ -2,16 +2,45 @@
    Saydam açık gri bar; kutu yukarı açılır, arkasında logo; tek kapı "Selam! Ne Pudingisin?".
    Sözlük sayfasındaki düğme /?sor=neli ile gelir: bar alanına "Neli pudingsin?" yazılı gelir, gönderme kişide.
    Hiçbir şey saklanmaz: görüşme yalnız bu sayfanın belleğinde (yenilenince gider); çerez ve localStorage yok.
-   Kaşık 9. turda kendiliğinden belirir; 12. turda kutu çıkar, sonra yalnız kriz yanıt alır → kayıt ekranı. */
+   Kaşık 9. turda kendiliğinden belirir; 12. turda kutu çıkar, sonra yalnız kriz yanıt alır → kayıt ekranı.
+   Üç dil (Alkım, 2026-11-07): metinler sayfanın diline göre (html lang); dil sunucuya görüşmenin ilk mesajında gider. */
 (function () {
   "use strict";
   var TURNSTILE_SITE_KEY = "0x4AAAAAAF0u99NTOm2ZVM0R"; // herkese açık site anahtarı (Cloudflare Turnstile); gizli anahtar yalnız sunucuda
   var UC = "/api/site/mesaj";
-  var KAPI = "Selam! Ne Pudingisin?";
+  var METIN = {
+    tr: {kapi: "Selam! Ne Pudingisin?", yaz: "Puding'e yaz", yerTutucu: "Puding'e yaz…", gonder: "Gönder", kapat: "Kapat",
+         kutuIlk: "Burada tanışma kadar konuşabiliyoruz.", kutuDolu: "Bugünlük burada doluyuz.",
+         kutuSonu: "Devam etmek istiyorsan kaşığa bas; kendi görüşmen başlasın. Puding şimdilik ücretsiz.",
+         alt: ["* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Ad, adres gibi kimlik bilgilerini yazmana gerek yok. 18+"],
+         kasik: "devam etmek istiyorsan kaşığa bas", kasikKisa: "kaşığa bas", kasikNot: "",
+         dogrulama: "Doğrulama tamamlanamadı. Sayfayı yenileyip yeniden dene.", yavas: "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.",
+         yanitYok: "Şu an yanıt üretilemedi. Biraz sonra tekrar dene.", baglanti: "Şu an bağlantı yok. Biraz sonra tekrar dene."},
+    en: {kapi: "Hi! What kind of pudding are you?", yaz: "Write to Puding", yerTutucu: "Write something to Puding…", gonder: "Send", kapat: "Close",
+         kutuIlk: "Here we can talk just enough to get acquainted.", kutuDolu: "We're full here for today.",
+         kutuSonu: "If you want to continue, tap the spoon to start your own conversation. Puding is free for now.",
+         alt: ["Puding is an AI and can make mistakes.",
+               "* What you write is sent to Anthropic to generate a reply; it isn't stored by Puding. No need to share identifying details like your name or address. 18+"],
+         kasik: "if you want to keep going, tap the spoon", kasikKisa: "tap the spoon",
+         kasikNot: "The app is in Turkish for now; English and Spanish are on the way.",
+         dogrulama: "Verification didn't complete. Reload the page and try again.", yavas: "Let's slow down a little; you can write again in a moment.",
+         yanitYok: "No reply could be generated right now. Try again in a moment.", baglanti: "No connection right now. Try again in a moment."},
+    es: {kapi: "¡Hola! ¿Qué clase de pudin eres?", yaz: "Escríbele a Puding", yerTutucu: "Escríbele algo a Puding…", gonder: "Enviar", kapat: "Cerrar",
+         kutuIlk: "Aquí podemos hablar lo justo para conocernos.", kutuDolu: "Por hoy estamos completos aquí.",
+         kutuSonu: "Si quieres continuar, toca la cuchara y empieza tu propia conversación. Puding es gratis por ahora.",
+         alt: ["Puding es una inteligencia artificial y puede cometer errores.",
+               "* Lo que escribes se envía a Anthropic para generar una respuesta; Puding no lo guarda. No hace falta que compartas datos que te identifiquen, como tu nombre o dirección. 18+"],
+         kasik: "si quieres continuar, toca la cuchara", kasikKisa: "toca la cuchara",
+         kasikNot: "Por ahora la aplicación está en turco; pronto estará en inglés y español.",
+         dogrulama: "No se pudo completar la verificación. Recarga la página e inténtalo de nuevo.", yavas: "Vayamos un poco más despacio; podrás escribir de nuevo en un momento.",
+         yanitYok: "Ahora mismo no se ha podido generar una respuesta. Inténtalo de nuevo en un momento.", baglanti: "Ahora mismo no hay conexión. Inténtalo de nuevo en un momento."}
+  };
+  var DIL = (document.documentElement.lang || "tr").slice(0, 2);
+  if (!METIN[DIL]) DIL = "tr";
+  var T = METIN[DIL];
+  var KAPI = T.kapi;
   var SOZLUK_SORUSU = "Neli pudingsin?";
-  var KUTU_ILK = "Burada tanışma kadar konuşabiliyoruz.", KUTU_DOLU = "Bugünlük burada doluyuz.";
-  var KUTU_SONU = "Devam etmek istiyorsan kaşığa bas; kendi görüşmen başlasın. Puding şimdilik ücretsiz.";
-  var ALT = "* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Ad, adres gibi kimlik bilgilerini yazmana gerek yok. 18+";
+  var KUTU_ILK = T.kutuIlk, KUTU_DOLU = T.kutuDolu, KUTU_SONU = T.kutuSonu;
   var KAYIT = "/odam?kayit";
   var KASIK_SVG = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><ellipse cx="12" cy="6.5" rx="4.2" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 11.5v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
 
@@ -27,17 +56,21 @@
   var kok = el("div", "pd-sohbet");
   kok.innerHTML =
     '<div class="pd-kutu" hidden><div class="pd-kutu-logo" aria-hidden="true"></div>' +
-    '<button type="button" class="pd-kapat" aria-label="Kapat">×</button>' +
+    '<button type="button" class="pd-kapat">×</button>' +
     '<div class="pd-akis" role="log" aria-live="polite"></div><div class="pd-ts"></div></div>' +
     '<div class="pd-kapilar"><button type="button" class="pd-kapi"></button></div>' +
-    '<form class="pd-bar" autocomplete="off"><label class="pd-gizli" for="pd-girdi">Puding\'e yaz</label>' +
-    '<textarea id="pd-girdi" rows="1" maxlength="1000" placeholder="Puding\'e yaz…"></textarea>' +
-    '<button type="submit" class="pd-gonder" aria-label="Gönder">↑</button></form>' +
-    '<p class="pd-alt"></p>';
+    '<form class="pd-bar" autocomplete="off"><label class="pd-gizli" for="pd-girdi"></label>' +
+    '<textarea id="pd-girdi" rows="1" maxlength="1000"></textarea>' +
+    '<button type="submit" class="pd-gonder">↑</button></form>' +
+    T.alt.map(function () { return '<p class="pd-alt"></p>'; }).join("");
   var kutu = kok.querySelector(".pd-kutu"), akis = kok.querySelector(".pd-akis"), form = kok.querySelector(".pd-bar"),
       girdi = kok.querySelector("textarea"), kapi = kok.querySelector(".pd-kapi"), kapilar = kok.querySelector(".pd-kapilar");
   kapi.textContent = KAPI;
-  kok.querySelector(".pd-alt").textContent = ALT;
+  girdi.placeholder = T.yerTutucu;
+  kok.querySelector("label.pd-gizli").textContent = T.yaz;
+  kok.querySelector(".pd-kapat").setAttribute("aria-label", T.kapat);
+  kok.querySelector(".pd-gonder").setAttribute("aria-label", T.gonder);
+  Array.prototype.forEach.call(kok.querySelectorAll(".pd-alt"), function (p, i) { p.textContent = T.alt[i]; });
 
   function ac() { kutu.hidden = false; kok.classList.add("pd-acik"); }
   kok.querySelector(".pd-kapat").addEventListener("click", function () { kutu.hidden = true; kok.classList.remove("pd-acik"); });
@@ -62,7 +95,7 @@
       var id = "pd-kart-" + k.tur;
       if (document.getElementById(id)) return;
       var c = el("div", "pd-kart"); c.id = id;
-      c.appendChild(el("strong", null, k.baslik || ""));
+      if (k.baslik) c.appendChild(el("strong", null, k.baslik));
       (k.satirlar || []).forEach(function (s) { c.appendChild(el("p", null, s)); });
       akis.appendChild(c);
     });
@@ -76,19 +109,21 @@
   function kasik() {
     if (kasikGosterildi) return;
     kasikGosterildi = true;
-    akis.appendChild(kasikBagi("devam etmek istiyorsan kaşığa bas"));
+    akis.appendChild(kasikBagi(T.kasik));
+    if (T.kasikNot) akis.appendChild(el("p", "pd-kasik-not", T.kasikNot));
     akis.scrollTop = akis.scrollHeight;
   }
   // 12. turda ve günlük tavanda: kaşık düğmeli kutu; görüşmede tek kutu, önceki kaşık yerine geçer
   function kutuAc(ilk, ozut) {
     var eski = akis.querySelector(".pd-davet");
-    if (eski) { eski.querySelector("p:last-of-type").textContent = ilk + " " + KUTU_SONU; return; }
+    if (eski) { eski.querySelector("p.pd-davet-metin").textContent = ilk + " " + KUTU_SONU; return; }
     kasikGosterildi = true;
-    Array.prototype.forEach.call(akis.querySelectorAll(".pd-kasik"), function (k) { k.remove(); });
+    Array.prototype.forEach.call(akis.querySelectorAll(".pd-kasik, .pd-kasik-not"), function (k) { k.remove(); });
     var d = el("div", "pd-davet");
     if (ozut) { var o = el("p", null, "Bugünkü özütün: "); o.appendChild(el("strong", "pd-ozut", ozut)); d.appendChild(o); }
-    d.appendChild(el("p", null, ilk + " " + KUTU_SONU));
-    d.appendChild(kasikBagi("kaşığa bas"));
+    d.appendChild(el("p", "pd-davet-metin", ilk + " " + KUTU_SONU));
+    d.appendChild(kasikBagi(T.kasikKisa));
+    if (T.kasikNot) d.appendChild(el("p", "pd-kasik-not", T.kasikNot));
     akis.appendChild(d);
     akis.scrollTop = akis.scrollHeight;
   }
@@ -104,7 +139,7 @@
       window.turnstile.render(kok.querySelector(".pd-ts"), {
         sitekey: TURNSTILE_SITE_KEY, appearance: "interaction-only",
         callback: function (j) { tsJeton = j; var b = tsBekleyen.splice(0); b.forEach(function (f) { f(); }); },
-        "error-callback": function () { tsBekleyen.splice(0); mesgul = false; balon("puding", "Doğrulama tamamlanamadı. Sayfayı yenileyip yeniden dene."); }
+        "error-callback": function () { tsBekleyen.splice(0); mesgul = false; balon("puding", T.dogrulama); }
       });
     };
     if (window.turnstile) return kur();
@@ -122,7 +157,7 @@
     var bekle = el("div", "pd-balon pd-puding pd-bekle"); bekle.appendChild(el("p", null, "…")); akis.appendChild(bekle);
     turnstile(function () {
       fetch(UC, {method: "POST", headers: {"Content-Type": "application/json"},
-                 body: JSON.stringify({oturum: oturum, metin: metin, turnstile: oturum ? null : tsJeton})})
+                 body: JSON.stringify({oturum: oturum, metin: metin, turnstile: oturum ? null : tsJeton, dil: DIL})})
         .then(function (r) { return r.json().then(function (j) { return {kod: r.status, j: j}; }); })
         .then(function (c) {
           bekle.remove();
@@ -137,15 +172,15 @@
             if (j.kapali) kilitle();  // 12. turda yazı alanı açık kalır: mesaj kriz sınıflandırıcısından geçer
           } else if (j.hata === "butce" || j.hata === "sinir") {
             if (j.hata === "butce") kutuAc(KUTU_DOLU, j.kutu_ozut);  // yazı alanı açık kalır: yeni mesaj kriz sınıflandırıcısından geçer
-            else balon("puding", "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.");
+            else balon("puding", T.yavas);
           } else if (j.hata === "dogrulama") {
-            tsJeton = null; balon("puding", "Doğrulama tamamlanamadı. Sayfayı yenileyip yeniden dene.");
+            tsJeton = null; balon("puding", T.dogrulama);
           } else {
             kartlar(j.kartlar);
-            balon("puding", j.hata || "Şu an yanıt üretilemedi. Biraz sonra tekrar dene.");
+            balon("puding", (DIL === "tr" && j.hata) || T.yanitYok);
           }
         })
-        .catch(function () { bekle.remove(); balon("puding", "Şu an bağlantı yok. Biraz sonra tekrar dene."); })
+        .catch(function () { bekle.remove(); balon("puding", T.baglanti); })
         .then(function () { mesgul = false; if (!bitti) girdi.focus(); });
     });
   }

@@ -81,6 +81,9 @@ body.pd-sohbet-var{padding-bottom:150px}
 /* Açılış (Alkım, 2026-11-05): alt satır başlıkla aynı genişlikte, tek satır. Nunito'da oran 0,391; başlık iki satıra düşerse
    ya da sayfa taşarsa assets/acilis.js alt satırı başlığın gerçek genişliğine eşitler. */
 :root{--pd-acilis:min(84px,max(9vw,min(48px,calc((100vw - 48px)/7.55))))}  /* telefonda başlık tek satıra sığacak kadar küçülür */
+/* Üç dil (Alkım, 2026-11-07): başlığın eni dile göre; oran = başlık eni / yazı boyu */
+html[lang=en]{--pd-acilis:min(84px,calc((100vw - 48px)/9.45))}
+html[lang=es]{--pd-acilis:min(66px,calc((100vw - 48px)/11.85))}
 .pd-acilis-baslik{font-size:var(--pd-acilis)!important;white-space:nowrap}
 .pd-acilis-alt{font-size:calc(var(--pd-acilis)*.391);white-space:nowrap}
 /* PUDİNG şeridi (Alkım, 2026-11-06): üç ifade, her biri tek satır; kutuyu assets/serit.js açar ve ekrana sığdırır */
@@ -105,4 +108,35 @@ body.pd-sohbet-var{padding-bottom:150px}
 @media (max-width: 900px){
   .pd-nots{flex-direction:column;align-items:flex-start!important;gap:10px!important}
   .pd-serit-oge{font-size:min(34px,calc((100vw - 48px)/10.1))}
+}
+/* Dil düğmesi (Alkım, 2026-11-07): TR / EN / ES */
+.pd-dil{display:inline-flex;align-items:center;gap:2px;font-size:12px;letter-spacing:.08em}
+.pd-dil a{display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:44px;padding:0 4px;text-decoration:none;color:#5C5763;font-weight:600}
+.pd-dil a[aria-current]{color:#1D1A20;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.pd-dil a:hover{color:#B3165F}
+/* Telefonda dil düğmesi logonun satırında: menü bir satır uzamasın, Türkçe sayfanın düzeni değişmesin */
+header{position:relative}
+@media (max-width: 520px){
+  .pd-dil{position:absolute;top:26px;right:20px;letter-spacing:.04em;font-size:11px;gap:0}
+  .pd-dil a{min-width:26px;padding:0 2px}
+}
+@media (max-width: 370px){html[lang=en] .pd-nav{gap:7px!important;letter-spacing:.02em!important}}
+html[lang=en] .pd-indir,html[lang=es] .pd-indir{font-size:11px;letter-spacing:.02em}
+html[lang=es] .pd-indir{font-size:10px}
+.pd-kasik-not{margin:0;font-size:12px;line-height:1.4;color:#5C5763}
+.pd-alt+.pd-alt{margin-top:-4px}
+/* EN ve ES'de bar altı iki satır: telefonda ilk ekran ve sayfa sonu kapanmasın */
+@media (max-width: 520px){
+  html[lang=en] .pd-alt,html[lang=es] .pd-alt{font-size:10px;line-height:1.3;padding:1px 6px}
+  html[lang=en] .pd-sohbet,html[lang=es] .pd-sohbet{gap:6px;padding-bottom:6px}
+  html[lang=en] body.pd-sohbet-var,html[lang=es] body.pd-sohbet-var{padding-bottom:200px}
+  html[lang=en] .pd-acilis,html[lang=es] .pd-acilis{padding-top:24px!important;padding-bottom:48px!important;gap:32px!important}
+}
+html[lang=es] .pd-acilis-alt span{display:inline}
+@media (max-width: 520px){html[lang=es] .pd-acilis-alt span{display:block}}
+html[lang=en] .pd-serit-oge{font-size:min(30px,calc((100vw - 285px)/29))}
+html[lang=es] .pd-serit-oge{font-size:min(28px,calc((100vw - 285px)/35))}
+@media (max-width: 900px){
+  html[lang=en] .pd-serit-oge{font-size:min(34px,calc((100vw - 48px)/12.2))}
+  html[lang=es] .pd-serit-oge{font-size:min(34px,calc((100vw - 48px)/15))}
 }

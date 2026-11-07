@@ -5,7 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Puding AI — belirsizlik güçtür</title>
 <meta name="description" content="Puding AI, belirsizlikte eşlik eden bir yapay zekâ. Vortikal Plastisite ve İktidar Plastisitesi kuramları üzerine kurulu.">
+<script>/* dil yönlendirme (Alkım, 2026-11-07): kayıtlı seçim, yoksa tarayıcı dili; konum ve IP kullanılmaz. Tarama botları yönlendirilmez. */
+(function(){var s=null,q=new URLSearchParams(location.search);try{s=localStorage.getItem("pd_dil")}catch(e){}
+if(q.get("dil")==="tr"){try{localStorage.setItem("pd_dil","tr")}catch(e){}q.delete("dil");var r=q.toString();history.replaceState(null,"",location.pathname+(r?"?"+r:"")+location.hash);return}
+if(q.has("sor")||/bot|crawl|spider|slurp|facebookexternalhit|preview|lighthouse/i.test(navigator.userAgent))return;
+if(s!=="tr"&&s!=="en"&&s!=="es"){var l=((navigator.languages&&navigator.languages[0])||navigator.language||"").slice(0,2).toLowerCase();s=l==="tr"?"tr":l==="es"?"es":"en";try{localStorage.setItem("pd_dil",s)}catch(e){}}
+if(s!=="tr")location.replace("/"+s+"/"+location.search+location.hash)})();</script>
 <link rel="canonical" href="https://pudingai.com/">
+<link rel="alternate" hreflang="tr" href="https://pudingai.com/">
+<link rel="alternate" hreflang="en" href="https://pudingai.com/en/">
+<link rel="alternate" hreflang="es" href="https://pudingai.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://pudingai.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Puding AI">
 <meta property="og:title" content="Puding AI — belirsizlik güçtür">
@@ -17,7 +27,7 @@
 <link rel="icon" type="image/png" href="/assets/puding-logo-128.png">
 <link rel="apple-touch-icon" href="/assets/puding-logo-128.png">
 <link rel="preload" href="/assets/fonts/nunito-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=14">
+<link rel="stylesheet" href="/assets/site.css?v=15">
 </head>
 <body>
 <div style="background: #F6F4F7; color: #1D1A20; font-family: Nunito, sans-serif; min-height: 100vh">
@@ -37,16 +47,17 @@
 <a class="pd-giris" rel="noopener" href="/odam?giris" style="text-decoration: none; border: 1.5px solid #1D1A20; border-radius: 999px; padding: 12px 22px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">GİRİŞ</a>
 <a class="pd-basvur" rel="noopener" href="/odam?basvur" style="text-decoration: none; background: #1D1A20; color: #F6F4F7; border: 1.5px solid #1D1A20; border-radius: 999px; padding: 12px 22px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">BAŞVUR</a>
 <a class="pd-indir" rel="noopener" href="/odam?kur" aria-label="Puding'i telefonuna indir">İNDİR</a>
+<span class="pd-dil" role="group" aria-label="Dil"><a href="/?dil=tr" data-dil="tr" hreflang="tr" lang="tr" aria-current="true">TR</a><a href="/en/" data-dil="en" hreflang="en" lang="en">EN</a><a href="/es/" data-dil="es" hreflang="es" lang="es">ES</a></span>
 </nav>
 </header>
 
 <!-- I. MERAK — açılış -->
-<section style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 96px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
+<section class="pd-acilis" style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 96px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
 <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 28px">
 <span style="font-family: Nunito, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: #5C5763">BİR YAPAY ZEKÂ</span>
 <h1 class="pd-acilis-baslik" style="margin: 0; font-weight: 500; line-height: 0.98; letter-spacing: -0.01em">Belirsizlik <em style="font-weight: 400">güçtür.</em></h1>
 <p class="pd-acilis-alt" style="margin: 0; font-weight: 400; line-height: 1.4; color: #3A3640">Belirsizlikte sana eşlik eden bir yapay zekâ.</p>
-<script src="/assets/acilis.js?v=1"></script>
+<script src="/assets/acilis.js?v=2"></script>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; margin-top: 8px">
 <a rel="noopener" href="/odam" style="text-decoration: none; background: #1D1A20; color: #F6F4F7; font-family: Nunito, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: 0.08em; padding: 18px 30px; border-radius: 999px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Konuşmaya başla</a>
 <a href="#kuram" style="font-family: Nunito, sans-serif; font-size: 14px; font-weight: 500; color: #3A3640">Önce oku ↓</a>
@@ -124,7 +135,8 @@
 <!-- Ziyaretçi sayacı: GoatCounter (çerez yok, IP saklanmaz; yalnız toplu sayı). Alkım, 2026-11-05 -->
 <script src="/assets/menu.js?v=2" defer></script>
 <script src="/assets/serit.js?v=1" defer></script>
-<script src="/assets/sohbet.js?v=9" defer></script>
+<script src="/assets/dil.js?v=1" defer></script>
+<script src="/assets/sohbet.js?v=10" defer></script>
 <script data-goatcounter="https://pudingai.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
