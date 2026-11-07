@@ -62,7 +62,7 @@ img{max-width:100%}
 .pd-davet{align-self:stretch;display:flex;flex-direction:column;align-items:flex-start;gap:10px;background:#fff;border:1px solid #DCD6E0;border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.5;color:#1D1A20}
 .pd-davet p{margin:0}
 .pd-ozut{font-weight:700;font-style:italic}
-.pd-ts:empty{display:none}.pd-ts{padding:0 20px 10px}
+.pd-ts:empty{display:none}
 .pd-kapilar{display:flex;justify-content:center}.pd-kapilar[hidden]{display:none}
 .pd-kapi{font:inherit;font-size:14px;font-weight:600;color:#1D1A20;background:rgba(246,244,247,.9);border:1px solid #DCD6E0;border-radius:999px;padding:9px 16px;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .pd-kapi:hover{border-color:#1D1A20}

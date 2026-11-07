@@ -49,7 +49,7 @@
         '" opacity="' + (0.35 + 0.65 * t).toFixed(2) + '" fill="#B3165F"/>';
     }).join("") + "</svg>";
 
-  var oturum = null, mesgul = false, bitti = false, kasikGosterildi = false, tsJeton = null, tsBekleyen = [];
+  var oturum = null, mesgul = false, bitti = false, kasikGosterildi = false, tsJeton = null, tsBekleyen = [], tsWidget = null, tsYukleniyor = false, tsHata = false;
 
   function el(etiket, sinif, metin) {
     var e = document.createElement(etiket);
@@ -62,7 +62,7 @@
   kok.innerHTML =
     '<div class="pd-kutu" hidden><div class="pd-kutu-logo" aria-hidden="true"></div>' +
     '<button type="button" class="pd-kapat">×</button>' +
-    '<div class="pd-akis" role="log" aria-live="polite"></div><div class="pd-ts"></div></div>' +
+    '<div class="pd-akis" role="log" aria-live="polite"></div></div><div class="pd-ts"></div>' +
     '<div class="pd-kapilar"><button type="button" class="pd-kapi"></button></div>' +
     '<form class="pd-bar" autocomplete="off"><label class="pd-gizli" for="pd-girdi"></label>' +
     '<textarea id="pd-girdi" rows="1" maxlength="1000"></textarea>' +
@@ -142,24 +142,39 @@
   }
   function kilitle() { bitti = true; girdi.disabled = true; form.classList.add("pd-kilitli"); }
 
-  // Turnstile: görüşmenin ilk mesajında bir kez (site anahtarı yoksa atlanır)
-  function turnstile(sonra) {
-    if (!TURNSTILE_SITE_KEY || oturum) return sonra();
-    if (tsJeton) return sonra();
-    tsBekleyen.push(sonra);
-    if (tsBekleyen.length > 1) return;
-    var kur = function () {
-      window.turnstile.render(kok.querySelector(".pd-ts"), {
-        sitekey: TURNSTILE_SITE_KEY, appearance: "interaction-only",
-        callback: function (j) { tsJeton = j; var b = tsBekleyen.splice(0); b.forEach(function (f) { f(); }); },
-        "error-callback": function () { tsBekleyen.splice(0); mesgul = false; balon("puding", T.dogrulama); }
-      });
-    };
-    if (window.turnstile) return kur();
+  // Turnstile (Alkım, 2026-11-07): betik ve jeton kişi bara dokunduğunda hazırlanır, ilk mesajı beklemez. Sayfa açılışında Cloudflare'e istek
+  // gitmez. Jeton görüşmenin ilk mesajında bir kez harcanır; süresi dolarsa widget yeniler. Site anahtarı yoksa atlanır.
+  function tsBekleyenleriCalistir() { var b = tsBekleyen.splice(0); b.forEach(function (f) { f(); }); }
+  function tsKur() {
+    if (tsWidget !== null) return;
+    tsWidget = window.turnstile.render(kok.querySelector(".pd-ts"), {
+      sitekey: TURNSTILE_SITE_KEY, appearance: "interaction-only",
+      callback: function (j) { tsJeton = j; tsHata = false; tsBekleyenleriCalistir(); },
+      "expired-callback": function () { tsJeton = null; },
+      "error-callback": function () {
+        tsJeton = null; tsHata = true;
+        if (!tsBekleyen.length) return;
+        tsBekleyen.splice(0); mesgul = false;
+        var b = akis.querySelector(".pd-bekle"); if (b) b.remove();
+        balon("puding", T.dogrulama);
+      }
+    });
+  }
+  function tsHazirla() {
+    if (!TURNSTILE_SITE_KEY || oturum || tsWidget !== null || tsYukleniyor) return;
+    if (window.turnstile) return tsKur();
+    tsYukleniyor = true;
     var s = document.createElement("script");
     s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-    s.async = true; s.onload = kur;
+    s.async = true; s.onload = function () { tsYukleniyor = false; tsKur(); };
+    s.onerror = function () { tsYukleniyor = false; };
     document.head.appendChild(s);
+  }
+  function turnstile(sonra) {
+    if (!TURNSTILE_SITE_KEY || oturum || tsJeton) return sonra();
+    tsBekleyen.push(sonra);
+    if (tsWidget !== null && tsHata) { tsHata = false; window.turnstile.reset(tsWidget); return; }
+    tsHazirla();
   }
 
   function gonder(metin) {
@@ -188,7 +203,7 @@
             if (j.hata === "butce") kutuAc(KUTU_DOLU, j.kutu_ozut);  // yazı alanı açık kalır: yeni mesaj kriz sınıflandırıcısından geçer
             else balon("puding", T.yavas);
           } else if (j.hata === "dogrulama") {
-            tsJeton = null; balon("puding", T.dogrulama);
+            tsJeton = null; tsHata = true; oturum = null; balon("puding", T.dogrulama);
           } else {
             kartlar(j.kartlar);
             balon("puding", (DIL === "tr" && j.hata) || T.yanitYok);
@@ -209,7 +224,8 @@
   form.addEventListener("submit", function (e) { e.preventDefault(); var m = girdi.value; girdi.value = ""; girdi.style.height = ""; gonder(m); });
   girdi.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
   girdi.addEventListener("input", function () { girdi.style.height = ""; girdi.style.height = Math.min(girdi.scrollHeight, 140) + "px"; });
-  girdi.addEventListener("focus", function () { if (akis.children.length) ac(); });
+  girdi.addEventListener("focus", function () { tsHazirla(); if (akis.children.length) ac(); });
+  kok.addEventListener("pointerdown", tsHazirla);
 
   document.body.classList.add("pd-sohbet-var");
   (document.getElementById("pd-sohbet-yeri") || document.body).appendChild(kok);
