@@ -1,5 +1,5 @@
 /* Puding site modu: ana sayfadaki anonim sohbet barı (Alkım, 2026-11-05).
-   Saydam açık gri bar; kutu yukarı açılır, arkasında logo; tek kapı "Selam! Ne Pudingisin?".
+   Saydam açık gri bar; kutu yukarı açılır, arkasında logo; üstünde üç öneri, dokununca gönderilir, ilk mesajdan sonra kaybolur (Alkım, 2026-11-09).
    Sözlük sayfasındaki düğme /?sor=neli ile gelir: bar alanına "Neli pudingsin?" yazılı gelir, gönderme kişide.
    Hiçbir şey saklanmaz: görüşme yalnız bu sayfanın belleğinde (yenilenince gider); çerez ve localStorage yok.
    Kaşık 9. turda kendiliğinden belirir; 12. turda kutu çıkar, sonra yalnız kriz yanıt alır → kayıt ekranı.
@@ -10,21 +10,21 @@
   var TURNSTILE_SITE_KEY = "0x4AAAAAAF0u99NTOm2ZVM0R"; // herkese açık site anahtarı (Cloudflare Turnstile); gizli anahtar yalnız sunucuda
   var UC = "/api/site/mesaj";
   var METIN = {
-    tr: {kapi: "Selam! Ne Pudingisin?", yaziyor: "Puding yazıyor", yaz: "Puding'e yaz", yerTutucu: "Puding'e yaz…", gonder: "Gönder", kapat: "Kapat",
+    tr: {oneriler: ["Bugün aklımda bir şey var", "Puding AI nedir?", "Bir karar arifesindeyim"], kaydol: "Devam etmek için kaydol →", yaziyor: "Puding yazıyor", yaz: "Puding'e yaz", yerTutucu: "Puding'e yaz…", gonder: "Gönder", kapat: "Kapat",
          kutuIlk: "Burada tanışma kadar konuşabiliyoruz.", kutuDolu: "Bugünlük burada doluyuz.",
          kutuSonu: "Devam etmek istiyorsan kaşığa bas; kendi görüşmen başlasın. Puding şimdilik ücretsiz.",
          alt: ["Puding bir yapay zekâdır, hata yapabilir.", "* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Ad, adres gibi kimlik bilgilerini yazmana gerek yok. 18+"],
          kasik: "devam etmek istiyorsan kaşığa bas", kasikKisa: "kaşığa bas",
          dogrulama: "Doğrulama tamamlanamadı. Sayfayı yenileyip yeniden dene.", yavas: "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.",
          yanitYok: "Şu an yanıt üretilemedi. Biraz sonra tekrar dene.", baglanti: "Şu an bağlantı yok. Biraz sonra tekrar dene."},
-    en: {kapi: "Hi! What kind of pudding are you?", yaziyor: "Puding is writing", yaz: "Write to Puding", yerTutucu: "Write something to Puding…", gonder: "Send", kapat: "Close",
+    en: {oneriler: ["I have something on my mind today", "What is Puding AI?", "I'm about to make a decision"], yaziyor: "Puding is writing", yaz: "Write to Puding", yerTutucu: "Write something to Puding…", gonder: "Send", kapat: "Close",
          kutuIlk: "Here we can talk just enough to get acquainted.", kutuDolu: "We're full here for today.",
          yakinda: "Puding's app is coming in English soon.",
          alt: ["Puding is an AI and can make mistakes.",
                "* What you write is sent to Anthropic to generate a reply; it isn't stored by Puding. No need to share identifying details like your name or address. 18+"],
          dogrulama: "Verification didn't complete. Reload the page and try again.", yavas: "Let's slow down a little; you can write again in a moment.",
          yanitYok: "No reply could be generated right now. Try again in a moment.", baglanti: "No connection right now. Try again in a moment."},
-    es: {kapi: "¡Hola! ¿Qué clase de pudin eres?", yaziyor: "Puding está escribiendo", yaz: "Escríbele a Puding", yerTutucu: "Escríbele algo a Puding…", gonder: "Enviar", kapat: "Cerrar",
+    es: {oneriler: ["Hoy tengo algo en la cabeza", "¿Qué es Puding AI?", "Estoy a punto de tomar una decisión"], yaziyor: "Puding está escribiendo", yaz: "Escríbele a Puding", yerTutucu: "Escríbele algo a Puding…", gonder: "Enviar", kapat: "Cerrar",
          kutuIlk: "Aquí podemos hablar lo justo para conocernos.", kutuDolu: "Por hoy estamos completos aquí.",
          yakinda: "La aplicación de Puding llegará pronto en español.",
          alt: ["Puding es una inteligencia artificial y puede cometer errores.",
@@ -36,7 +36,6 @@
   var DIL = (document.documentElement.lang || "tr").slice(0, 2);
   if (!METIN[DIL]) DIL = "tr";
   var T = METIN[DIL];
-  var KAPI = T.kapi;
   var SOZLUK_SORUSU = "Neli pudingsin?";
   var KUTU_ILK = T.kutuIlk, KUTU_DOLU = T.kutuDolu, KUTU_SONU = T.kutuSonu;
   var KAYIT = "/odam?kayit";
@@ -64,14 +63,18 @@
     '<div class="pd-kutu" hidden><div class="pd-kutu-logo" aria-hidden="true"></div>' +
     '<button type="button" class="pd-kapat">×</button>' +
     '<div class="pd-akis" role="log" aria-live="polite"></div></div><div class="pd-ts"></div>' +
-    '<div class="pd-kapilar"><button type="button" class="pd-kapi"></button></div>' +
+    '<div class="pd-kapilar"></div>' +
     '<form class="pd-bar" autocomplete="off"><label class="pd-gizli" for="pd-girdi"></label>' +
     '<textarea id="pd-girdi" rows="1" maxlength="1000"></textarea>' +
     '<button type="submit" class="pd-gonder">↑</button></form>' +
     T.alt.map(function () { return '<p class="pd-alt"></p>'; }).join("");
   var kutu = kok.querySelector(".pd-kutu"), akis = kok.querySelector(".pd-akis"), form = kok.querySelector(".pd-bar"),
-      girdi = kok.querySelector("textarea"), kapi = kok.querySelector(".pd-kapi"), kapilar = kok.querySelector(".pd-kapilar");
-  kapi.textContent = KAPI;
+      girdi = kok.querySelector("textarea"), kapilar = kok.querySelector(".pd-kapilar");
+  T.oneriler.forEach(function (m) {
+    var b = el("button", "pd-kapi", m); b.type = "button";
+    b.addEventListener("click", function () { gonder(m); });
+    kapilar.appendChild(b);
+  });
   girdi.placeholder = T.yerTutucu;
   kok.querySelector("label.pd-gizli").textContent = T.yaz;
   kok.querySelector(".pd-kapat").setAttribute("aria-label", T.kapat);
@@ -83,6 +86,26 @@
   gizlilikBag.textContent = GIZLILIK[DIL][0]; gizlilikBag.style.color = "inherit"; gizlilikBag.style.textDecoration = "underline";
   var sonAlt = kok.querySelector(".pd-alt:last-of-type");
   sonAlt.appendChild(document.createTextNode(" ")); sonAlt.appendChild(gizlilikBag);
+
+  // Kayıt satırı (Alkım, 2026-11-09): 3. yanıttan sonra barın altında; yalnız Türkçe (EN ve ES onam metni yok). Özütle gelen kaşık ayrı, aynen kalır.
+  // Kart çıkan görüşmede (kriz) ve kutu ya da kilit gelince bir daha görünmez. Yeni sekmede: bardaki konuşma eski sekmede kalır.
+  var KAYDOL_TUR = 3, yanitSayisi = 0, kaydol = null;
+  if (T.kaydol) {
+    kaydol = el("a", "pd-kaydol");
+    kaydol.href = KAYIT; kaydol.target = "_blank"; kaydol.rel = "noopener"; kaydol.hidden = true;
+    kaydol.innerHTML = KASIK_SVG + "<span></span>";  // kaşık + yazı, tek öğe
+    kaydol.querySelector("span").textContent = T.kaydol;
+    kaydol.addEventListener("click", function () {  // yalnız sayı, kaşıktan ayrı; görüşme başına bir kez; sayfa beklemez
+      if (!oturum) return;
+      try { fetch(UC.replace("mesaj", "kaydol"), {method: "POST", keepalive: true, headers: {"Content-Type": "application/json"}, body: JSON.stringify({oturum: oturum})}).catch(function () {}); } catch (e) {}
+    });
+    form.parentNode.insertBefore(kaydol, form.nextSibling);
+  }
+  function kaydolGuncelle(j) {
+    if (!kaydol) return;
+    if ((j.kartlar && j.kartlar.length) || j.kutu || j.kapali || j.hata === "butce") { kaydol.remove(); kaydol = null; return; }
+    if (yanitSayisi >= KAYDOL_TUR) kaydol.hidden = false;
+  }
 
   function ac() { kutu.hidden = false; kok.classList.add("pd-acik"); }
   kok.querySelector(".pd-kapat").addEventListener("click", function () { kutu.hidden = true; kok.classList.remove("pd-acik"); });
@@ -204,6 +227,8 @@
           var j = c.j || {};
           if (j.oturum) oturum = j.oturum;
           if (j.gonderilen) benim.querySelector("p").textContent = j.gonderilen; // kişisel bilgi maskeli hâliyle
+          if (c.kod === 200 && j.yanit) yanitSayisi++;
+          kaydolGuncelle(j);
           if (c.kod === 200) {
             if (j.yanit) balon("puding", j.yanit, j.ozut);
             kartlar(j.kartlar);
@@ -225,7 +250,6 @@
     });
   }
 
-  kapi.addEventListener("click", function () { gonder(KAPI); });
   Array.prototype.forEach.call(document.querySelectorAll("[data-bar]"), function (a) {
     a.addEventListener("click", function (e) { e.preventDefault(); girdi.focus(); });
   });

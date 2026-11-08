@@ -63,7 +63,7 @@ img{max-width:100%}
 .pd-davet p{margin:0}
 .pd-ozut{font-weight:700;font-style:italic}
 .pd-ts:empty{display:none}
-.pd-kapilar{display:flex;justify-content:center}.pd-kapilar[hidden]{display:none}
+.pd-kapilar{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}.pd-kapilar[hidden]{display:none}
 .pd-kapi{font:inherit;font-size:14px;font-weight:600;color:#1D1A20;background:rgba(246,244,247,.9);border:1px solid #DCD6E0;border-radius:999px;padding:9px 16px;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .pd-kapi:hover{border-color:#1D1A20}
 .pd-kapi-ikonlu{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 16px;text-decoration:none}
@@ -142,3 +142,16 @@ html[lang=es] .pd-serit-oge{font-size:min(28px,calc((100vw - 285px)/35))}
   html[lang=en] .pd-serit-oge{font-size:min(34px,calc((100vw - 48px)/12.2))}
   html[lang=es] .pd-serit-oge{font-size:min(34px,calc((100vw - 48px)/15))}
 }
+/* Instagram simgesi (Alkım, 2026-11-09): tek renk; görünen 20 px, basma alanı 44 px */
+.pd-ig{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-12px;color:#1D1A20}
+.pd-ig:hover{color:#B3165F}
+/* Barın altındaki kayıt satırı (Alkım, 2026-11-09) */
+.pd-kaydol{align-self:center;display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:0 10px;font-size:13px;font-weight:500;color:#5C5763;text-decoration:none;background:rgba(246,244,247,.88);border-radius:8px}
+.pd-kaydol:hover{color:#1D1A20;text-decoration:underline}
+.pd-kaydol svg{flex:none;width:18px;height:18px}
+.pd-kaydol[hidden]{display:none}
+/* Öneriler görünürken sayfanın sonu barın altında kalmasın; telefonda öneriler biraz küçük (Alkım, 2026-11-09) */
+body.pd-sohbet-var:has(.pd-kapilar:not([hidden])){padding-bottom:300px}
+@media (max-width: 430px){.pd-kapilar{gap:6px}.pd-kapilar .pd-kapi{font-size:13px;padding:7px 12px}}
+/* En küçük telefonda öneriler tek satır, yana kayar (Alkım, 2026-11-09) */
+@media (max-width: 340px){.pd-kapilar{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}.pd-kapilar::-webkit-scrollbar{display:none}.pd-kapilar .pd-kapi{flex:none;white-space:nowrap}}
