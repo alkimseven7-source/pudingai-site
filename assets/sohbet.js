@@ -106,7 +106,7 @@
     });
   }
   function kasikBagi(yazi) {
-    var a = el("a", "pd-kasik"); a.href = KAYIT; a.rel = "noopener";
+    var a = el("a", "pd-kasik"); a.href = KAYIT; a.target = "_blank"; a.rel = "noopener";  // bardaki konuşma eski sekmede kalır (Alkım, 2026-11-08)
     a.innerHTML = KASIK_SVG + "<span></span>";
     a.querySelector("span").textContent = yazi;
     a.addEventListener("click", function () {  // yalnız sayı (Alkım, 2026-11-07): görüşme başına bir kez; sayfa beklemez
