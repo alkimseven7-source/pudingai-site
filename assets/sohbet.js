@@ -32,6 +32,7 @@
          dogrulama: "No se pudo completar la verificación. Recarga la página e inténtalo de nuevo.", yavas: "Vayamos un poco más despacio; podrás escribir de nuevo en un momento.",
          yanitYok: "Ahora mismo no se ha podido generar una respuesta. Inténtalo de nuevo en un momento.", baglanti: "Ahora mismo no hay conexión. Inténtalo de nuevo en un momento."}
   };
+  var GIZLILIK = {tr: ["Gizlilik", "/gizlilik/"], en: ["Privacy", "/en/privacy/"], es: ["Privacidad", "/es/privacidad/"]};
   var DIL = (document.documentElement.lang || "tr").slice(0, 2);
   if (!METIN[DIL]) DIL = "tr";
   var T = METIN[DIL];
@@ -76,6 +77,12 @@
   kok.querySelector(".pd-kapat").setAttribute("aria-label", T.kapat);
   kok.querySelector(".pd-gonder").setAttribute("aria-label", T.gonder);
   Array.prototype.forEach.call(kok.querySelectorAll(".pd-alt"), function (p, i) { p.textContent = T.alt[i]; });
+  // Gizlilik sayfası yeni sekmede: görüşme yalnız bu sayfanın belleğinde, aynı sekmede gidilirse kaybolur (Alkım, 2026-11-08).
+  var gizlilikBag = el("a");
+  gizlilikBag.href = GIZLILIK[DIL][1]; gizlilikBag.target = "_blank"; gizlilikBag.rel = "noopener";
+  gizlilikBag.textContent = GIZLILIK[DIL][0]; gizlilikBag.style.color = "inherit"; gizlilikBag.style.textDecoration = "underline";
+  var sonAlt = kok.querySelector(".pd-alt:last-of-type");
+  sonAlt.appendChild(document.createTextNode(" ")); sonAlt.appendChild(gizlilikBag);
 
   function ac() { kutu.hidden = false; kok.classList.add("pd-acik"); }
   kok.querySelector(".pd-kapat").addEventListener("click", function () { kutu.hidden = true; kok.classList.remove("pd-acik"); });
