@@ -26,29 +26,33 @@
 <meta name="twitter:image" content="https://pudingai.com/assets/paylasim-es.png">
 <meta name="twitter:image:alt" content="Puding AI — la incertidumbre es poder">
 <meta property="og:locale" content="es_ES">
-<meta name="theme-color" content="#F6F4F7">
+<meta name="theme-color" content="#F6F4F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151217" media="(prefers-color-scheme: dark)">
+<script>/* tema: çizimden önce */(function(){var t=null,h=document.documentElement,m=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)");try{t=localStorage.getItem("puding_tema");if(t==="gunduz"||t==="gece"){t=t==="gece"?"koyu":"acik";localStorage.setItem("puding_tema",t)}}catch(e){}var k=t==="koyu"||(t!=="acik"&&!!(m&&m.matches));h.setAttribute("data-theme",k?"koyu":"acik");if(t==="koyu"||t==="acik")document.querySelectorAll('meta[name="theme-color"]').forEach(function(x){x.content=k?"#151217":"#F6F4F7"})})();</script>
+<style>html{background:#F6F4F7}html[data-theme=koyu]{background:#151217}</style>
 <link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/gorsel/puding-favicon-32.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 <link rel="preload" href="/assets/fonts/nunito-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=17">
+<link rel="stylesheet" href="/assets/site.css?v=19">
 <style>@media (max-width: 520px){.pd-nav{flex-basis:100%}}</style>
 </head>
 <body>
-<div style="background: #F6F4F7; color: #1D1A20; font-family: Nunito, sans-serif; min-height: 100vh">
+<div style="background: var(--zemin); color: var(--metin); font-family: Nunito, sans-serif; min-height: 100vh">
 
 <header style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
-<a href="/es/" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #1D1A20">
+<a href="/es/" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--metin)">
 <img src="/assets/puding-logo-128.png" alt="Puding AI, inicio" width="33" height="40" style="width: 33px; height: 40px; display: block">
 <div style="display: flex; flex-direction: column; gap: 2px">
 <span style="font-family: Nunito, sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.01em">Puding AI</span>
-<span style="font-family: Nunito, sans-serif; font-size: 12px; color: #5C5763">la incertidumbre es <em style="font-family: Nunito, sans-serif; font-size: 14px">poder</em></span>
+<span style="font-family: Nunito, sans-serif; font-size: 12px; color: var(--soluk)">la incertidumbre es <em style="font-family: Nunito, sans-serif; font-size: 14px">poder</em></span>
 </div>
 </a>
 <nav class="pd-nav" aria-label="Menú principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-family: Nunito, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.18em">
 <a href="/es/que-es/" style="text-decoration: none">QUÉ ES</a>
 <a href="/sozluk/" style="text-decoration: none">GLOSARIO</a>
 <a class="pd-ig" href="https://www.instagram.com/pudingai_/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+<!-- tema --><span class="pd-tema"><button type="button" class="pd-tema-dugme" aria-label="Cambiar tema" aria-pressed="false"><svg viewBox="-24 -24 640 768" width="27" height="32" aria-hidden="true"><path d="M553 342C548 356 539 368 531 380C523 392 513 401 507 412C501 423 496 433 493 445C490 457 490 471 488 485C486 499 485 515 481 531C477 547 473 566 466 582C459 598 450 616 438 630C426 644 412 656 397 665C382 674 364 682 346 686C328 690 310 692 292 692C274 692 255 688 238 683C221 678 204 670 189 659C174 648 161 634 150 620C139 606 132 588 125 572C118 556 114 539 110 524C106 509 104 494 100 481C96 468 90 458 83 448C76 438 64 430 55 419C46 408 36 396 32 383C28 370 28 356 28 342C28 328 34 315 35 301C36 287 34 274 33 258C32 242 26 224 27 207C28 190 32 172 39 158C46 144 59 131 72 122C85 113 104 111 119 104C134 97 146 91 159 81C172 71 182 55 196 46C210 37 226 30 242 28C258 26 276 29 292 33C308 37 322 50 338 53C354 56 370 51 387 50C404 49 424 45 441 49C458 53 476 60 488 72C500 84 508 104 513 121C518 138 514 161 518 177C522 193 530 205 536 218C542 231 552 242 557 256C562 270 564 285 563 299C562 313 558 328 553 342Z" style="fill:var(--tema-dolgu);stroke:var(--tema-cizgi)" stroke-width="40" stroke-linejoin="round"/><path d="M137 292Q206 196 275 292M318 292Q389 196 460 292M249 342C232 470 300 500 372 492" fill="none" style="stroke:var(--tema-yuz)" stroke-width="36" stroke-linecap="round"/></svg></button><button type="button" class="pd-tema-oto" hidden>auto</button></span><!-- /tema -->
 <span class="pd-dil" role="group" aria-label="Idioma"><a href="/gizlilik/" data-dil="tr" hreflang="tr" lang="tr">TR</a><a href="/en/privacy/" data-dil="en" hreflang="en" lang="en">EN</a><a href="/es/privacidad/" data-dil="es" hreflang="es" lang="es" aria-current="true">ES</a></span>
 </nav>
 </header>
@@ -56,57 +60,57 @@
 <main style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 112px">
 <article style="max-width: 680px; display: flex; flex-direction: column; gap: 52px">
 <div style="display: flex; flex-direction: column; gap: 12px">
-<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: #5C5763">PRIVACIDAD</span>
-<span style="font-size: 14px; color: #5C5763">Última actualización: 8 de noviembre de 2026</span>
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: var(--soluk)">PRIVACIDAD</span>
+<span style="font-size: 14px; color: var(--soluk)">Última actualización: 8 de noviembre de 2026</span>
 </div>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25">¿Quién ve tus conversaciones?</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">La ventana de la página de inicio no tiene cuenta. Lo que escribes está en memoria mientras hablas y no se guarda, así que no hay ningún registro que leer.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">En la aplicación (por ahora solo en turco), tú. Tus conversaciones se guardan cifradas en tu cuenta y no aparecen en el panel de administración. Nosotros no leemos tus conversaciones. Tus análisis, tu mapa y tus huellas de memoria tampoco aparecen en el panel.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">Las conversaciones no se supervisan en tiempo real.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">El operador ve tu dirección de correo, tus fechas de registro y de último acceso y el estado de tu consentimiento, y lee lo que escribes en las casillas de valoración y comentarios y en la respuesta libre de la encuesta.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">La ventana de la página de inicio no tiene cuenta. Lo que escribes está en memoria mientras hablas y no se guarda, así que no hay ningún registro que leer.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">En la aplicación (por ahora solo en turco), tú. Tus conversaciones se guardan cifradas en tu cuenta y no aparecen en el panel de administración. Nosotros no leemos tus conversaciones. Tus análisis, tu mapa y tus huellas de memoria tampoco aparecen en el panel.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">Las conversaciones no se supervisan en tiempo real.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">El operador ve tu dirección de correo, tus fechas de registro y de último acceso y el estado de tu consentimiento, y lee lo que escribes en las casillas de valoración y comentarios y en la respuesta libre de la encuesta.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25">¿Adónde va?</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">Lo que escribes va a Anthropic (EE. UU.) para generar respuestas, para los controles de seguridad y para el análisis. Anthropic no lo usa para entrenar modelos. Cuánto tiempo se conserva allí y qué pasa con el contenido marcado por seguridad está en <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data" target="_blank" rel="noopener">las condiciones de datos de Anthropic</a>. Nosotros no podemos borrarlo de allí.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">Los teléfonos, correos, números de identidad turcos, IBAN, números de tarjeta y direcciones postales se sustituyen por una marca antes de salir. Los nombres van tal como los escribes.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">La aplicación funciona en Fráncfort (Google Cloud) y los registros están en Dublín (Supabase). Si usas el dictado por voz, tu voz va a Google (UE). Los correos los envía Brevo (UE). En la ventana de inicio y en la pantalla de acceso y registro, Cloudflare comprueba tu navegador para filtrar las solicitudes automáticas.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">Tus datos no se venden ni se usan para publicidad.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">Lo que escribes va a Anthropic (EE. UU.) para generar respuestas, para los controles de seguridad y para el análisis. Anthropic no lo usa para entrenar modelos. Cuánto tiempo se conserva allí y qué pasa con el contenido marcado por seguridad está en <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data" target="_blank" rel="noopener">las condiciones de datos de Anthropic</a>. Nosotros no podemos borrarlo de allí.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">Los teléfonos, correos, números de identidad turcos, IBAN, números de tarjeta y direcciones postales se sustituyen por una marca antes de salir. Los nombres van tal como los escribes.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">La aplicación funciona en Fráncfort (Google Cloud) y los registros están en Dublín (Supabase). Si usas el dictado por voz, tu voz va a Google (UE). Los correos los envía Brevo (UE). En la ventana de inicio y en la pantalla de acceso y registro, Cloudflare comprueba tu navegador para filtrar las solicitudes automáticas.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">Tus datos no se venden ni se usan para publicidad.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25">¿Qué se guarda?</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">En la ventana de la página de inicio, nada: no hay cuenta, y la conversación está en memoria y desaparece tras 30 minutos de silencio.</p>
-<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 18px; line-height: 1.55; color: #2A2630">
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">En la ventana de la página de inicio, nada: no hay cuenta, y la conversación está en memoria y desaparece tras 30 minutos de silencio.</p>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 18px; line-height: 1.55; color: var(--metin-2)">
 <li><strong>Conversación abierta:</strong> hasta que la archives. Al archivarla, se borra.</li>
 <li><strong>Análisis y özüt (dos palabras de la conversación):</strong> 365 días, como mucho las últimas 30 conversaciones.</li>
 <li><strong>Huellas de memoria y nombres que mencionas:</strong> 30 huellas como mucho. Puedes desactivar la memoria.</li>
 <li><strong>Nota de seguridad:</strong> 90 días. No incluye lo que escribiste, solo el tipo, la hora, la línea de ayuda mostrada y el paso dado.</li>
 <li><strong>Correo y fecha de nacimiento:</strong> mientras exista tu cuenta. Tu fecha de nacimiento está cifrada; tu correo y las fechas, no.</li>
 </ul>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">Si no entras durante 365 días, se borran tu conversación y tus huellas de memoria. Las copias semanales cifradas se guardan 8 semanas; los registros técnicos sin contenido, 30 días.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">Si no entras durante 365 días, se borran tu conversación y tus huellas de memoria. Las copias semanales cifradas se guardan 8 semanas; los registros técnicos sin contenido, 30 días.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25">Borrar y descargar</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">En las Opciones de la aplicación puedes borrar un registro, todo tu archivo o tu cuenta. Lo borrado espera 7 días y durante ese tiempo puedes deshacerlo. Después se borra para siempre y desaparece de las copias en 8 semanas como máximo.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">La única excepción son las notas de seguridad: no se pueden borrar y desaparecen solas a los 90 días.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">También puedes descargar tus datos desde Opciones, con un código que llega a tu correo. Si no puedes entrar, escribe a <a href="mailto:kvkk@pudingai.com">kvkk@pudingai.com</a>.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">En las Opciones de la aplicación puedes borrar un registro, todo tu archivo o tu cuenta. Lo borrado espera 7 días y durante ese tiempo puedes deshacerlo. Después se borra para siempre y desaparece de las copias en 8 semanas como máximo.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">La única excepción son las notas de seguridad: no se pueden borrar y desaparecen solas a los 90 días.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">También puedes descargar tus datos desde Opciones, con un código que llega a tu correo. Si no puedes entrar, escribe a <a href="mailto:kvkk@pudingai.com">kvkk@pudingai.com</a>.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25">Más detalles</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">Cada proveedor, cada dato y cada plazo están en el <a href="/odam?aydinlatma" target="_blank" rel="noopener">aviso de privacidad (KVKK, en turco)</a>. Responsable del tratamiento: Enstitü Fabrika Etkinlik Organizasyon Ticaret Ltd. Şti. Para solicitudes y preguntas: <a href="mailto:kvkk@pudingai.com">kvkk@pudingai.com</a></p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">Cada proveedor, cada dato y cada plazo están en el <a href="/odam?aydinlatma" target="_blank" rel="noopener">aviso de privacidad (KVKK, en turco)</a>. Responsable del tratamiento: Enstitü Fabrika Etkinlik Organizasyon Ticaret Ltd. Şti. Para solicitudes y preguntas: <a href="mailto:kvkk@pudingai.com">kvkk@pudingai.com</a></p>
 </section>
 </article>
 </main>
 
-<footer style="border-top: 1px solid #DCD6E0">
-<div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; font-family: Nunito, sans-serif; font-size: 14px; color: #5C5763">
+<footer style="border-top: 1px solid var(--cizgi)">
+<div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; font-family: Nunito, sans-serif; font-size: 14px; color: var(--soluk)">
 <div style="display: flex; flex-direction: column; gap: 6px">
-<span style="font-weight: 700; font-size: 16px; color: #1D1A20">Puding AI</span>
+<span style="font-weight: 700; font-size: 16px; color: var(--metin)">Puding AI</span>
 <span>la incertidumbre es <em style="font-family: Nunito, sans-serif; font-size: 16px">poder</em></span>
 </div>
 <nav aria-label="Menú del pie" style="display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center">
@@ -125,5 +129,6 @@
 </div>
 <script src="/assets/dil.js?v=1" defer></script>
 <script data-goatcounter="https://pudingai.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="/assets/tema.js?v=1" defer></script>
 </body>
 </html>

@@ -26,29 +26,33 @@
 <meta name="twitter:image" content="https://pudingai.com/assets/paylasim-en.png">
 <meta name="twitter:image:alt" content="Puding AI — uncertainty is power">
 <meta property="og:locale" content="en_US">
-<meta name="theme-color" content="#F6F4F7">
+<meta name="theme-color" content="#F6F4F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151217" media="(prefers-color-scheme: dark)">
+<script>/* tema: çizimden önce */(function(){var t=null,h=document.documentElement,m=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)");try{t=localStorage.getItem("puding_tema");if(t==="gunduz"||t==="gece"){t=t==="gece"?"koyu":"acik";localStorage.setItem("puding_tema",t)}}catch(e){}var k=t==="koyu"||(t!=="acik"&&!!(m&&m.matches));h.setAttribute("data-theme",k?"koyu":"acik");if(t==="koyu"||t==="acik")document.querySelectorAll('meta[name="theme-color"]').forEach(function(x){x.content=k?"#151217":"#F6F4F7"})})();</script>
+<style>html{background:#F6F4F7}html[data-theme=koyu]{background:#151217}</style>
 <link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/gorsel/puding-favicon-32.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 <link rel="preload" href="/assets/fonts/nunito-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=17">
+<link rel="stylesheet" href="/assets/site.css?v=19">
 <style>@media (max-width: 520px){.pd-nav{flex-basis:100%}}</style>
 </head>
 <body>
-<div style="background: #F6F4F7; color: #1D1A20; font-family: Nunito, sans-serif; min-height: 100vh">
+<div style="background: var(--zemin); color: var(--metin); font-family: Nunito, sans-serif; min-height: 100vh">
 
 <header style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
-<a href="/en/" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #1D1A20">
+<a href="/en/" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--metin)">
 <img src="/assets/puding-logo-128.png" alt="Puding AI home" width="33" height="40" style="width: 33px; height: 40px; display: block">
 <div style="display: flex; flex-direction: column; gap: 2px">
 <span style="font-family: Nunito, sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.01em">Puding AI</span>
-<span style="font-family: Nunito, sans-serif; font-size: 12px; color: #5C5763">uncertainty is <em style="font-family: Nunito, sans-serif; font-size: 14px">power</em></span>
+<span style="font-family: Nunito, sans-serif; font-size: 12px; color: var(--soluk)">uncertainty is <em style="font-family: Nunito, sans-serif; font-size: 14px">power</em></span>
 </div>
 </a>
 <nav class="pd-nav" aria-label="Main menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-family: Nunito, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.18em">
 <a href="/en/about/" style="text-decoration: none">WHAT IT IS</a>
 <a href="/sozluk/" style="text-decoration: none">GLOSSARY</a>
 <a class="pd-ig" href="https://www.instagram.com/pudingai_/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+<!-- tema --><span class="pd-tema"><button type="button" class="pd-tema-dugme" aria-label="Change theme" aria-pressed="false"><svg viewBox="-24 -24 640 768" width="27" height="32" aria-hidden="true"><path d="M553 342C548 356 539 368 531 380C523 392 513 401 507 412C501 423 496 433 493 445C490 457 490 471 488 485C486 499 485 515 481 531C477 547 473 566 466 582C459 598 450 616 438 630C426 644 412 656 397 665C382 674 364 682 346 686C328 690 310 692 292 692C274 692 255 688 238 683C221 678 204 670 189 659C174 648 161 634 150 620C139 606 132 588 125 572C118 556 114 539 110 524C106 509 104 494 100 481C96 468 90 458 83 448C76 438 64 430 55 419C46 408 36 396 32 383C28 370 28 356 28 342C28 328 34 315 35 301C36 287 34 274 33 258C32 242 26 224 27 207C28 190 32 172 39 158C46 144 59 131 72 122C85 113 104 111 119 104C134 97 146 91 159 81C172 71 182 55 196 46C210 37 226 30 242 28C258 26 276 29 292 33C308 37 322 50 338 53C354 56 370 51 387 50C404 49 424 45 441 49C458 53 476 60 488 72C500 84 508 104 513 121C518 138 514 161 518 177C522 193 530 205 536 218C542 231 552 242 557 256C562 270 564 285 563 299C562 313 558 328 553 342Z" style="fill:var(--tema-dolgu);stroke:var(--tema-cizgi)" stroke-width="40" stroke-linejoin="round"/><path d="M137 292Q206 196 275 292M318 292Q389 196 460 292M249 342C232 470 300 500 372 492" fill="none" style="stroke:var(--tema-yuz)" stroke-width="36" stroke-linecap="round"/></svg></button><button type="button" class="pd-tema-oto" hidden>auto</button></span><!-- /tema -->
 <span class="pd-dil" role="group" aria-label="Language"><a href="/gizlilik/" data-dil="tr" hreflang="tr" lang="tr">TR</a><a href="/en/privacy/" data-dil="en" hreflang="en" lang="en" aria-current="true">EN</a><a href="/es/privacidad/" data-dil="es" hreflang="es" lang="es">ES</a></span>
 </nav>
 </header>
@@ -56,57 +60,57 @@
 <main style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 112px">
 <article style="max-width: 680px; display: flex; flex-direction: column; gap: 52px">
 <div style="display: flex; flex-direction: column; gap: 12px">
-<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: #5C5763">PRIVACY</span>
-<span style="font-size: 14px; color: #5C5763">Last updated: 8 November 2026</span>
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: var(--soluk)">PRIVACY</span>
+<span style="font-size: 14px; color: var(--soluk)">Last updated: 8 November 2026</span>
 </div>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25">Who sees your conversations?</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">The window on the home page has no account. What you write stays in memory while you talk and isn't saved, so there is no record to read.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">In the app (only in Turkish for now), you do. Your conversations are stored encrypted in your account and don't appear in the admin panel. We don't read your conversations. Your analyses, your map and your memory traces don't appear in the panel either.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">Conversations aren't monitored in real time.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">The operator sees your email address, your sign-up and last sign-in dates and your consent status, and reads what you write in the rating and feedback boxes and in the survey's free-text answer.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">The window on the home page has no account. What you write stays in memory while you talk and isn't saved, so there is no record to read.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">In the app (only in Turkish for now), you do. Your conversations are stored encrypted in your account and don't appear in the admin panel. We don't read your conversations. Your analyses, your map and your memory traces don't appear in the panel either.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">Conversations aren't monitored in real time.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">The operator sees your email address, your sign-up and last sign-in dates and your consent status, and reads what you write in the rating and feedback boxes and in the survey's free-text answer.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25">Where does it go?</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">What you write goes to Anthropic (USA) to generate replies, for safety checks and for analysis. Anthropic doesn't use it to train models. How long it's kept there, and what happens to content flagged for safety, is set out in <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data" target="_blank" rel="noopener">Anthropic’s data terms</a>. We can't delete it from there.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">Phone numbers, email addresses, Turkish ID numbers, IBANs, card numbers and street addresses are replaced with a marker before they go. Names go as you wrote them.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">The app runs in Frankfurt (Google Cloud) and records are kept in Dublin (Supabase). If you use voice typing, your voice goes to Google (EU). Emails are sent by Brevo (EU). In the home page window and on the sign-in and sign-up screen, Cloudflare checks your browser to filter out automated requests.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">Your data isn't sold or used for advertising.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">What you write goes to Anthropic (USA) to generate replies, for safety checks and for analysis. Anthropic doesn't use it to train models. How long it's kept there, and what happens to content flagged for safety, is set out in <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data" target="_blank" rel="noopener">Anthropic’s data terms</a>. We can't delete it from there.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">Phone numbers, email addresses, Turkish ID numbers, IBANs, card numbers and street addresses are replaced with a marker before they go. Names go as you wrote them.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">The app runs in Frankfurt (Google Cloud) and records are kept in Dublin (Supabase). If you use voice typing, your voice goes to Google (EU). Emails are sent by Brevo (EU). In the home page window and on the sign-in and sign-up screen, Cloudflare checks your browser to filter out automated requests.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">Your data isn't sold or used for advertising.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25">What is kept?</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">In the home page window, nothing: no account, and the conversation stays in memory and is dropped after 30 minutes of silence.</p>
-<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 18px; line-height: 1.55; color: #2A2630">
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">In the home page window, nothing: no account, and the conversation stays in memory and is dropped after 30 minutes of silence.</p>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 18px; line-height: 1.55; color: var(--metin-2)">
 <li><strong>Open conversation:</strong> until you archive it. Archiving deletes the conversation.</li>
 <li><strong>Analysis and özüt (two words from the conversation):</strong> 365 days, the latest 30 conversations at most.</li>
 <li><strong>Memory traces and names you mention:</strong> 30 traces at most. You can turn remembering off.</li>
 <li><strong>Safety note:</strong> 90 days. It doesn't include what you wrote, only its type, the time, the helpline shown and the step taken.</li>
 <li><strong>Email address and date of birth:</strong> while your account exists. Your date of birth is encrypted; your email address and dates are not.</li>
 </ul>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">If you don't sign in for 365 days, your conversation and memory traces are deleted. Weekly encrypted backups are kept for 8 weeks, technical logs without content for 30 days.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">If you don't sign in for 365 days, your conversation and memory traces are deleted. Weekly encrypted backups are kept for 8 weeks, technical logs without content for 30 days.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25">Deleting and downloading</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">In the app's Options, you can delete a record, your whole archive or your account. Deleted items wait 7 days, and you can undo during that time. Then they're permanently deleted, and gone from backups within 8 weeks at most.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">The one exception is safety notes: they can't be deleted and disappear on their own after 90 days.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">You can also download your data from Options, using a code sent to your email. If you can't get in, write to <a href="mailto:kvkk@pudingai.com">kvkk@pudingai.com</a>.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">In the app's Options, you can delete a record, your whole archive or your account. Deleted items wait 7 days, and you can undo during that time. Then they're permanently deleted, and gone from backups within 8 weeks at most.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">The one exception is safety notes: they can't be deleted and disappear on their own after 90 days.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">You can also download your data from Options, using a code sent to your email. If you can't get in, write to <a href="mailto:kvkk@pudingai.com">kvkk@pudingai.com</a>.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25">More detail</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #2A2630">Every provider, every kind of data and every period is in the <a href="/odam?aydinlatma" target="_blank" rel="noopener">privacy notice (KVKK, in Turkish)</a>. Data controller: Enstitü Fabrika Etkinlik Organizasyon Ticaret Ltd. Şti. For requests and questions: <a href="mailto:kvkk@pudingai.com">kvkk@pudingai.com</a></p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--metin-2)">Every provider, every kind of data and every period is in the <a href="/odam?aydinlatma" target="_blank" rel="noopener">privacy notice (KVKK, in Turkish)</a>. Data controller: Enstitü Fabrika Etkinlik Organizasyon Ticaret Ltd. Şti. For requests and questions: <a href="mailto:kvkk@pudingai.com">kvkk@pudingai.com</a></p>
 </section>
 </article>
 </main>
 
-<footer style="border-top: 1px solid #DCD6E0">
-<div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; font-family: Nunito, sans-serif; font-size: 14px; color: #5C5763">
+<footer style="border-top: 1px solid var(--cizgi)">
+<div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; font-family: Nunito, sans-serif; font-size: 14px; color: var(--soluk)">
 <div style="display: flex; flex-direction: column; gap: 6px">
-<span style="font-weight: 700; font-size: 16px; color: #1D1A20">Puding AI</span>
+<span style="font-weight: 700; font-size: 16px; color: var(--metin)">Puding AI</span>
 <span>uncertainty is <em style="font-family: Nunito, sans-serif; font-size: 16px">power</em></span>
 </div>
 <nav aria-label="Footer menu" style="display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center">
@@ -125,5 +129,6 @@
 </div>
 <script src="/assets/dil.js?v=1" defer></script>
 <script data-goatcounter="https://pudingai.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="/assets/tema.js?v=1" defer></script>
 </body>
 </html>

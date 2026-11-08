@@ -26,29 +26,33 @@
 <meta name="twitter:image" content="https://pudingai.com/assets/paylasim-en.png">
 <meta name="twitter:image:alt" content="Puding AI — uncertainty is power">
 <meta property="og:locale" content="en_US">
-<meta name="theme-color" content="#F6F4F7">
+<meta name="theme-color" content="#F6F4F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151217" media="(prefers-color-scheme: dark)">
+<script>/* tema: çizimden önce */(function(){var t=null,h=document.documentElement,m=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)");try{t=localStorage.getItem("puding_tema");if(t==="gunduz"||t==="gece"){t=t==="gece"?"koyu":"acik";localStorage.setItem("puding_tema",t)}}catch(e){}var k=t==="koyu"||(t!=="acik"&&!!(m&&m.matches));h.setAttribute("data-theme",k?"koyu":"acik");if(t==="koyu"||t==="acik")document.querySelectorAll('meta[name="theme-color"]').forEach(function(x){x.content=k?"#151217":"#F6F4F7"})})();</script>
+<style>html{background:#F6F4F7}html[data-theme=koyu]{background:#151217}</style>
 <link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/gorsel/puding-favicon-32.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 <link rel="preload" href="/assets/fonts/nunito-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=17">
+<link rel="stylesheet" href="/assets/site.css?v=19">
 <style>@media (max-width: 520px){.pd-nav{flex-basis:100%}}</style>
 </head>
 <body>
-<div style="background: #F6F4F7; color: #1D1A20; font-family: Nunito, sans-serif; min-height: 100vh">
+<div style="background: var(--zemin); color: var(--metin); font-family: Nunito, sans-serif; min-height: 100vh">
 
 <header style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
-<a href="/en/" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #1D1A20">
+<a href="/en/" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--metin)">
 <img src="/assets/puding-logo-128.png" alt="Puding AI home" width="33" height="40" style="width: 33px; height: 40px; display: block">
 <div style="display: flex; flex-direction: column; gap: 2px">
 <span style="font-family: Nunito, sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.01em">Puding AI</span>
-<span style="font-family: Nunito, sans-serif; font-size: 12px; color: #5C5763">uncertainty is <em style="font-family: Nunito, sans-serif; font-size: 14px">power</em></span>
+<span style="font-family: Nunito, sans-serif; font-size: 12px; color: var(--soluk)">uncertainty is <em style="font-family: Nunito, sans-serif; font-size: 14px">power</em></span>
 </div>
 </a>
 <nav class="pd-nav" aria-label="Main menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-family: Nunito, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.18em">
-<a href="/en/about/" aria-current="page" style="text-decoration: none; color: #B3165F">WHAT IT IS</a>
+<a href="/en/about/" aria-current="page" style="text-decoration: none; color: var(--vurgu)">WHAT IT IS</a>
 <a href="/sozluk/" style="text-decoration: none">GLOSSARY</a>
 <a class="pd-ig" href="https://www.instagram.com/pudingai_/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+<!-- tema --><span class="pd-tema"><button type="button" class="pd-tema-dugme" aria-label="Change theme" aria-pressed="false"><svg viewBox="-24 -24 640 768" width="27" height="32" aria-hidden="true"><path d="M553 342C548 356 539 368 531 380C523 392 513 401 507 412C501 423 496 433 493 445C490 457 490 471 488 485C486 499 485 515 481 531C477 547 473 566 466 582C459 598 450 616 438 630C426 644 412 656 397 665C382 674 364 682 346 686C328 690 310 692 292 692C274 692 255 688 238 683C221 678 204 670 189 659C174 648 161 634 150 620C139 606 132 588 125 572C118 556 114 539 110 524C106 509 104 494 100 481C96 468 90 458 83 448C76 438 64 430 55 419C46 408 36 396 32 383C28 370 28 356 28 342C28 328 34 315 35 301C36 287 34 274 33 258C32 242 26 224 27 207C28 190 32 172 39 158C46 144 59 131 72 122C85 113 104 111 119 104C134 97 146 91 159 81C172 71 182 55 196 46C210 37 226 30 242 28C258 26 276 29 292 33C308 37 322 50 338 53C354 56 370 51 387 50C404 49 424 45 441 49C458 53 476 60 488 72C500 84 508 104 513 121C518 138 514 161 518 177C522 193 530 205 536 218C542 231 552 242 557 256C562 270 564 285 563 299C562 313 558 328 553 342Z" style="fill:var(--tema-dolgu);stroke:var(--tema-cizgi)" stroke-width="40" stroke-linejoin="round"/><path d="M137 292Q206 196 275 292M318 292Q389 196 460 292M249 342C232 470 300 500 372 492" fill="none" style="stroke:var(--tema-yuz)" stroke-width="36" stroke-linecap="round"/></svg></button><button type="button" class="pd-tema-oto" hidden>auto</button></span><!-- /tema -->
 <span class="pd-dil" role="group" aria-label="Language"><a href="/nedir/" data-dil="tr" hreflang="tr" lang="tr">TR</a><a href="/en/about/" data-dil="en" hreflang="en" lang="en" aria-current="true">EN</a><a href="/es/que-es/" data-dil="es" hreflang="es" lang="es">ES</a></span>
 </nav>
 </header>
@@ -57,41 +61,41 @@
 <article style="max-width: 760px; display: flex; flex-direction: column; gap: 64px">
 <div style="display: flex; flex-direction: column; gap: 16px">
 <h1 style="margin: 0; font-size: 64px; font-weight: 500; line-height: 1.05">Puding AI</h1>
-<p style="margin: 0; font-size: 24px; line-height: 1.4; color: #3A3640">An AI that accompanies you through uncertainty.</p>
+<p style="margin: 0; font-size: 24px; line-height: 1.4; color: var(--metin-3)">An AI that accompanies you through uncertainty.</p>
 </div>
 
 <section style="display: flex; flex-direction: column; gap: 18px">
-<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: #5C5763">MISSION</span>
-<p style="margin: 0; font-size: 22px; line-height: 1.6; color: #2A2630">Puding helps people grow their capacity to stay with uncertainty — making sense of their movement without labeling it, and making visible the trail they leave.</p>
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: var(--soluk)">MISSION</span>
+<p style="margin: 0; font-size: 22px; line-height: 1.6; color: var(--metin-2)">Puding helps people grow their capacity to stay with uncertainty — making sense of their movement without labeling it, and making visible the trail they leave.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 18px">
-<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: #5C5763">VISION</span>
-<p style="margin: 0; font-size: 22px; line-height: 1.6; color: #2A2630">A world where uncertainty is lived not as a lack but as a power, and where everyone carries the map of their own movement.</p>
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: var(--soluk)">VISION</span>
+<p style="margin: 0; font-size: 22px; line-height: 1.6; color: var(--metin-2)">A world where uncertainty is lived not as a lack but as a power, and where everyone carries the map of their own movement.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 18px">
-<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: #5C5763">VALUES</span>
-<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #2A2630"><strong style="font-weight: 700">What is, is.</strong> Experience is not an object waiting to be defined; it is an ongoing becoming.</p>
-<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #2A2630"><strong style="font-weight: 700">Equivalence.</strong> Equivalence is difference: no two people are the same, and no position stands above another.</p>
-<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #2A2630"><strong style="font-weight: 700">Consent.</strong> No definition is attached to a person; even when safety calls for it, we offer company, not labels.</p>
-<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #2A2630"><strong style="font-weight: 700">Openness.</strong> Our theory will be published in open access; we explain openly what Puding does and why.</p>
-<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #2A2630"><strong style="font-weight: 700">Self-critique.</strong> We turn the same scrutiny on our own concepts.</p>
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: var(--soluk)">VALUES</span>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: var(--metin-2)"><strong style="font-weight: 700">What is, is.</strong> Experience is not an object waiting to be defined; it is an ongoing becoming.</p>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: var(--metin-2)"><strong style="font-weight: 700">Equivalence.</strong> Equivalence is difference: no two people are the same, and no position stands above another.</p>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: var(--metin-2)"><strong style="font-weight: 700">Consent.</strong> No definition is attached to a person; even when safety calls for it, we offer company, not labels.</p>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: var(--metin-2)"><strong style="font-weight: 700">Openness.</strong> Our theory will be published in open access; we explain openly what Puding does and why.</p>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: var(--metin-2)"><strong style="font-weight: 700">Self-critique.</strong> We turn the same scrutiny on our own concepts.</p>
 </section>
 
-<a href="/nedir/#kuram" hreflang="tr" style="align-self: flex-start; color: #1D1A20; font-size: 18px; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center">Read the theory (in Turkish) →</a>
+<a href="/nedir/#kuram" hreflang="tr" style="align-self: flex-start; color: var(--metin); font-size: 18px; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center">Read the theory (in Turkish) →</a>
 
-<nav aria-label="Glossary, Privacy" style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 18px; font-weight: 600; border-top: 1px solid #DCD6E0; padding-top: 28px">
-<a href="/sozluk/" hreflang="tr" style="color: #1D1A20; min-height: 44px; display: inline-flex; align-items: center">Glossary</a>
-<a href="/en/privacy/" style="color: #1D1A20; min-height: 44px; display: inline-flex; align-items: center">Privacy</a>
+<nav aria-label="Glossary, Privacy" style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 18px; font-weight: 600; border-top: 1px solid var(--cizgi); padding-top: 28px">
+<a href="/sozluk/" hreflang="tr" style="color: var(--metin); min-height: 44px; display: inline-flex; align-items: center">Glossary</a>
+<a href="/en/privacy/" style="color: var(--metin); min-height: 44px; display: inline-flex; align-items: center">Privacy</a>
 </nav>
 </article>
 </main>
 
-<footer style="border-top: 1px solid #DCD6E0">
-<div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; font-family: Nunito, sans-serif; font-size: 14px; color: #5C5763">
+<footer style="border-top: 1px solid var(--cizgi)">
+<div style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; font-family: Nunito, sans-serif; font-size: 14px; color: var(--soluk)">
 <div style="display: flex; flex-direction: column; gap: 6px">
-<span style="font-weight: 700; font-size: 16px; color: #1D1A20">Puding AI</span>
+<span style="font-weight: 700; font-size: 16px; color: var(--metin)">Puding AI</span>
 <span>uncertainty is <em style="font-family: Nunito, sans-serif; font-size: 16px">power</em></span>
 </div>
 <nav aria-label="Footer menu" style="display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center">
@@ -110,5 +114,6 @@
 </div>
 <script src="/assets/dil.js?v=1" defer></script>
 <script data-goatcounter="https://pudingai.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="/assets/tema.js?v=1" defer></script>
 </body>
 </html>

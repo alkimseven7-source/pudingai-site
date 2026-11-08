@@ -46,7 +46,7 @@
     [0, 1, 2, 3, 4, 5, 6, 7].map(function (i) {
       var t = i / 7, r = 2 + 13.5 * t, a = i * 55 * Math.PI / 180;
       return '<circle cx="' + (20 + r * Math.cos(a)).toFixed(2) + '" cy="' + (20 + r * Math.sin(a)).toFixed(2) + '" r="' + (1.6 + 2.4 * t).toFixed(2) +
-        '" opacity="' + (0.35 + 0.65 * t).toFixed(2) + '" fill="#B3165F"/>';
+        '" opacity="' + (0.35 + 0.65 * t).toFixed(2) + '" fill="currentColor"/>';
     }).join("") + "</svg>";
 
   var oturum = null, mesgul = false, bitti = false, kasikGosterildi = false, tsJeton = null, tsBekleyen = [], tsWidget = null, tsYukleniyor = false, tsHata = false;

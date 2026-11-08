@@ -2,8 +2,8 @@
 // Rastgele terim, gündelik tanımın ilk cümlesi, terime bağlantı.
 // kuram işareti (Alkım, 2026-11-03)
 const SZ_TAG = { vp: 'VORTİKAL PLASTİSİTE', ip: 'İKTİDAR PLASTİSİTESİ', vpip: 'VP · İP', odunc: 'ÖDÜNÇ KAVRAM', pd: 'PUDİNG' };
-const SZ_BG = { vp: 'rgba(133,124,143,0.22)', ip: 'rgba(179,22,95,0.12)', vpip: 'linear-gradient(90deg, rgba(133,124,143,0.22), rgba(179,22,95,0.12))', odunc: 'transparent', pd: 'transparent' };
-const SZ_RING = { vp: 'none', ip: 'none', vpip: 'none', odunc: 'inset 0 0 0 1px #8A8490', pd: 'inset 0 0 0 1.5px #1D1A20' };
+const SZ_BG = { vp: 'var(--vp-zemin)', ip: 'var(--ip-zemin)', vpip: 'linear-gradient(90deg, var(--vp-zemin), var(--ip-zemin))', odunc: 'transparent', pd: 'transparent' };
+const SZ_RING = { vp: 'none', ip: 'none', vpip: 'none', odunc: 'inset 0 0 0 1px var(--soluk-2)', pd: 'inset 0 0 0 1.5px var(--metin)' };
 // okuma süresi: 4 sn + sözcük başına 0,35 sn (≈170 sözcük/dk), 9–16 sn arası
 function szDuration(def) {
   const words = def.split(/\s+/).length;
