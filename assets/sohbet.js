@@ -62,13 +62,13 @@
   kok.innerHTML =
     '<div class="pd-kutu" hidden><div class="pd-kutu-logo" aria-hidden="true"></div>' +
     '<button type="button" class="pd-kapat">×</button>' +
-    '<div class="pd-akis" role="log" aria-live="polite"></div></div><div class="pd-ts"></div>' +
+    '<div class="pd-akis" role="log" aria-live="polite"></div><div class="pd-kartlar" aria-live="polite" hidden></div></div><div class="pd-ts"></div>' +
     '<div class="pd-kapilar"></div>' +
     '<form class="pd-bar" autocomplete="off"><label class="pd-gizli" for="pd-girdi"></label>' +
     '<textarea id="pd-girdi" rows="1" maxlength="1000"></textarea>' +
     '<button type="submit" class="pd-gonder">↑</button></form>' +
     T.alt.map(function () { return '<p class="pd-alt"></p>'; }).join("");
-  var kutu = kok.querySelector(".pd-kutu"), akis = kok.querySelector(".pd-akis"), form = kok.querySelector(".pd-bar"),
+  var kutu = kok.querySelector(".pd-kutu"), akis = kok.querySelector(".pd-akis"), kartYeri = kok.querySelector(".pd-kartlar"), form = kok.querySelector(".pd-bar"),
       girdi = kok.querySelector("textarea"), kapilar = kok.querySelector(".pd-kapilar");
   T.oneriler.forEach(function (m) {
     var b = el("button", "pd-kapi", m); b.type = "button";
@@ -132,7 +132,8 @@
       var c = el("div", "pd-kart"); c.id = id;
       if (k.baslik) c.appendChild(el("strong", null, k.baslik));
       (k.satirlar || []).forEach(function (s) { c.appendChild(el("p", null, s)); });
-      akis.appendChild(c);
+      kartYeri.appendChild(c); kartYeri.hidden = false;  // akışın dışında, yazı alanının üstünde: görüşme uzasa da görünür alanda kalır (Alkım, 2026-11-09)
+      akis.scrollTop = akis.scrollHeight;
     });
   }
   function kasikBagi(yazi) {
