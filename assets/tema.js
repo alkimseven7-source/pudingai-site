@@ -19,15 +19,26 @@
     try { localStorage.setItem(ANAHTAR, t); } catch (e) {}
   }
   function koyuMu(t) { return t === "koyu" || (t !== "acik" && !!(mq && mq.matches)); }
-  function gecis() {
-    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    kok.classList.add("tema-gecis");
-    clearTimeout(gecis.z);
-    gecis.z = setTimeout(function () { kok.classList.remove("tema-gecis"); }, 350);
+  // Geçiş (Alkım, 2026-11-09): koyuluk Puding simgesinden daire olarak yayılır; açığa dönerken simgede toplanır. Tarayıcı View Transitions
+  // bilmiyorsa ya da hareketi azalt açıksa anında. Cihaz ayarı ya da başka sekme değişince de anında (dokunuş yok).
+  function simgedenGec(degistir) {
+    var once = kok.getAttribute("data-theme") === "koyu";
+    var b = document.querySelector(".pd-tema-dugme");
+    if (!document.startViewTransition || !b || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return degistir();
+    if (koyuMu(secim()) === once) return degistir();
+    var r = b.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+    var yaricap = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    var kucuk = "circle(0px at " + x + "px " + y + "px)", buyuk = "circle(" + yaricap + "px at " + x + "px " + y + "px)";
+    if (once) kok.classList.add("tema-cekil");  // koyu görüntü üstte kalır, simgede toplanır
+    var v = document.startViewTransition(degistir);
+    v.ready.then(function () {
+      kok.animate({clipPath: once ? [buyuk, kucuk] : [kucuk, buyuk]},
+                  {duration: 560, easing: "cubic-bezier(.4,0,.2,1)", pseudoElement: once ? "::view-transition-old(root)" : "::view-transition-new(root)"});
+    }).catch(function () {});
+    v.finished.then(function () { kok.classList.remove("tema-cekil"); }, function () { kok.classList.remove("tema-cekil"); });
   }
-  function uygula(yumusak) {
+  function uygula() {
     var t = secim(), koyu = koyuMu(t);
-    if (yumusak) gecis();
     kok.setAttribute("data-theme", koyu ? "koyu" : "acik");
     // otomatikte iki meta kendi media koşuluyla çalışır; elle seçimde ikisi de seçilen zemini alır
     var zemin = getComputedStyle(kok).getPropertyValue("--zemin").trim();
@@ -42,12 +53,12 @@
     var h = e.target.closest && e.target.closest(".pd-tema-dugme, .pd-tema-oto");
     if (!h) return;
     yaz(h.classList.contains("pd-tema-oto") ? "otomatik" : (koyuMu(secim()) ? "acik" : "koyu"));
-    uygula(true);
+    simgedenGec(uygula);
   });
   if (mq) {
-    var degisti = function () { if (secim() === "otomatik") uygula(true); };
+    var degisti = function () { if (secim() === "otomatik") uygula(); };
     if (mq.addEventListener) mq.addEventListener("change", degisti); else if (mq.addListener) mq.addListener(degisti);
   }
-  window.addEventListener("storage", function (e) { if (e.key === ANAHTAR) uygula(true); });
-  uygula(false);
+  window.addEventListener("storage", function (e) { if (e.key === ANAHTAR) uygula(); });
+  uygula();
 })();

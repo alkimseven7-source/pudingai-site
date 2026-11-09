@@ -23,8 +23,10 @@
 --kutu-zemin:rgba(30,25,34,.97);--kapi-zemin:rgba(33,28,37,.92);--cip-zemin:rgba(21,18,23,.92);--bar-zemin:rgba(44,38,50,.94);--bar-cizgi:rgba(92,83,100,.9);--golge:rgba(0,0,0,.5);--golge-koyu:rgba(0,0,0,.55);
 --ip-zemin:rgba(240,125,190,.2);--vp-zemin:rgba(170,160,180,.22);--hedef-zemin:rgba(170,160,180,.14);--bag-cizgi:rgba(237,232,239,.4);
 --kart-zemin:#FFFFFF;--kart-metin:#1D1A20;--kart-cizgi:#FFFFFF;--tema-dolgu:#08060A;--tema-cizgi:#EDE8EF;--tema-yuz:#EDE8EF;color-scheme:dark}
-html.tema-gecis,html.tema-gecis *{transition:background-color .3s ease,color .3s ease,border-color .3s ease,fill .3s ease,stroke .3s ease!important}
-@media (prefers-reduced-motion: reduce){html.tema-gecis,html.tema-gecis *{transition:none!important}}
+/* tema geçişi: simgeden yayılan daire (assets/tema.js) */
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+html.tema-cekil::view-transition-old(root){z-index:2}
+html.tema-cekil::view-transition-new(root){z-index:1}
 body{font-family:Nunito,sans-serif}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
