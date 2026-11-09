@@ -7,6 +7,7 @@
 <meta name="description" content="Puding AI, belirsizlikte eşlik eden bir yapay zekâ. Vortikal Plastisite ve İktidar Plastisitesi kuramları üzerine kurulu.">
 <script>/* dil yönlendirme (Alkım, 2026-11-07): kayıtlı seçim, yoksa tarayıcı dili; konum ve IP kullanılmaz. Tarama botları yönlendirilmez. */
 (function(){var s=null,q=new URLSearchParams(location.search);try{s=localStorage.getItem("pd_dil")}catch(e){}
+if(q.has("d")){q.delete("d");var t=q.toString();history.replaceState(null,"",location.pathname+(t?"?"+t:"")+location.hash)}
 if(q.get("dil")==="tr"){try{localStorage.setItem("pd_dil","tr")}catch(e){}q.delete("dil");var r=q.toString();history.replaceState(null,"",location.pathname+(r?"?"+r:"")+location.hash);return}
 if(q.has("sor")||/bot|crawl|spider|slurp|facebookexternalhit|preview|lighthouse/i.test(navigator.userAgent))return;
 if(s!=="tr"&&s!=="en"&&s!=="es"){var l=((navigator.languages&&navigator.languages[0])||navigator.language||"").slice(0,2).toLowerCase();s=l==="tr"?"tr":l==="es"?"es":"en";try{localStorage.setItem("pd_dil",s)}catch(e){}}
@@ -36,9 +37,9 @@ if(s!=="tr")location.replace("/"+s+"/"+location.search+location.hash)})();</scri
 <meta name="theme-color" content="#151217" media="(prefers-color-scheme: dark)">
 <script>/* tema: çizimden önce */(function(){var t=null,h=document.documentElement,m=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)");try{t=localStorage.getItem("puding_tema");if(t==="gunduz"||t==="gece"){t=t==="gece"?"koyu":"acik";localStorage.setItem("puding_tema",t)}}catch(e){}var k=t==="koyu"||(t!=="acik"&&!!(m&&m.matches));h.setAttribute("data-theme",k?"koyu":"acik");if(t==="koyu"||t==="acik")document.querySelectorAll('meta[name="theme-color"]').forEach(function(x){x.content=k?"#151217":"#F6F4F7"})})();</script>
 <style>html{background:#F6F4F7}html[data-theme=koyu]{background:#151217}</style>
-<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
-<link rel="icon" type="image/png" sizes="32x32" href="/gorsel/puding-favicon-32.png?v=2">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+<link rel="icon" href="/favicon.ico?v=3" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/gorsel/puding-favicon-32.png?v=3">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="preload" href="/assets/fonts/nunito-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css?v=19">
