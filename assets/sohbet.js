@@ -10,7 +10,7 @@
   var TURNSTILE_SITE_KEY = "0x4AAAAAAF0u99NTOm2ZVM0R"; // herkese açık site anahtarı (Cloudflare Turnstile); gizli anahtar yalnız sunucuda
   var UC = "/api/site/mesaj";
   var METIN = {
-    tr: {oneriler: ["Bugün aklımda bir şey var", "Puding AI nedir?", "Bir karar arifesindeyim"], kaydol: "Devam etmek için kaydol →", yaziyor: "Puding yazıyor", yaz: "Puding'e yaz", yerTutucu: "Puding'e yaz…", gonder: "Gönder", kapat: "Kapat",
+    tr: {oneriler: ["Bugün aklımda bir şey var", "Puding AI nedir?", "Bir karar eşiğindeyim"], kaydol: "Devam etmek için kaydol →", yaziyor: "Puding yazıyor", yaz: "Puding'e yaz", yerTutucu: "Puding'e yaz…", gonder: "Gönder", kapat: "Kapat",
          kutuIlk: "Burada tanışma kadar konuşabiliyoruz.", kutuDolu: "Bugünlük burada doluyuz.",
          kutuSonu: "Devam etmek istiyorsan kaşığa bas; kendi görüşmen başlasın. Puding şimdilik ücretsiz.",
          alt: ["Puding bir yapay zekâdır, hata yapabilir.", "* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Ad, adres gibi kimlik bilgilerini yazmana gerek yok. 18+ Güvenlik doğrulaması için Cloudflare kullanılır."],
