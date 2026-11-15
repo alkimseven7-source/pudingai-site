@@ -212,7 +212,7 @@ window.SOZLUK_BANT = [
 {
 "t": "Umay Fazı",
 "s": "umay-fazi",
-"d": "Ne istediğini ve neye ihtiyacın olduğunu artık biliyorsun, ama henüz yola çıkmadın: kapının eşiğinde, adım atmadan hemen önceki an.",
+"d": "Sıkıntı geçmiştir, istek vardır, yön henüz yoktur.",
 "k": "vp"
 },
 {
@@ -267,12 +267,6 @@ window.SOZLUK_BANT = [
 "t": "öz-tetik / dış-tetik",
 "s": "oz-tetik-dis-tetik",
 "d": "Bin kişilik bir tiyatroda oyun bitmiştir ama kimse kalkmaz.",
-"k": "vp"
-},
-{
-"t": "null-exist hipotezi",
-"s": "null-exist-hipotezi",
-"d": "Bir girdabın tam ortasında hiçbir şey dönmez, ama çevresinde su dönmeye devam eder.",
 "k": "vp"
 },
 {
