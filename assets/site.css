@@ -100,6 +100,12 @@ body:has(.pd-sor){padding-bottom:76px}
    soluk; dikkat çekmesin. Zemin kalır: bar sabit, arkasından sayfa kayar. */
 .pd-alt{margin:0;align-self:center;text-align:center;font-family:"Times New Roman",Times,serif;font-style:italic;font-size:11px;line-height:1.4;color:var(--soluk-2);background:var(--cip-zemin);border-radius:8px;padding:2px 8px}
 .pd-gizli{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* Gizlilik kutusu (Alkım, 2026-11-16): /gizlilik/ sayfasının yerine barın altında açılır. Küçük, italik, Times New Roman, soluk. */
+.pd-gizlilik-ac{border:0;background:none;padding:0;margin:0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.pd-gizlilik{align-self:center;max-width:min(620px,calc(100vw - 32px));margin:4px 0 0;padding:10px 14px;background:var(--cip-zemin);border:1px solid var(--cizgi);border-radius:12px;font-family:"Times New Roman",Times,serif;font-style:italic;font-size:12px;line-height:1.5;color:var(--soluk-2);text-align:left}
+.pd-gizlilik p{margin:0 0 6px}
+.pd-gizlilik p:last-child{margin-bottom:0}
+.pd-gizlilik a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 body.pd-sohbet-var{padding-bottom:170px}
 @media (prefers-reduced-motion: reduce){.pd-sohbet *,.pd-sor *{transition:none!important;animation:none!important}}
 /* Açılış (Alkım, 2026-11-05): alt satır başlıkla aynı genişlikte, tek satır. Nunito'da oran 0,391; başlık iki satıra düşerse

@@ -30,7 +30,31 @@
          dogrulama: "No se pudo completar la verificación. Recarga la página e inténtalo de nuevo.", yavas: "Vayamos un poco más despacio; podrás escribir de nuevo en un momento.",
          yanitYok: "Ahora mismo no se ha podido generar una respuesta. Inténtalo de nuevo en un momento.", baglanti: "Ahora mismo no hay conexión. Inténtalo de nuevo en un momento."}
   };
-  var GIZLILIK = {tr: ["Gizlilik", "/gizlilik/"], en: ["Privacy", "/en/privacy/"], es: ["Privacidad", "/es/privacidad/"]};
+  // Gizlilik kutusu (Alkım, 2026-11-16): /gizlilik/ sayfası kalktı; metin barın altında açılır kutuda. Adreste ?gizlilik
+  // varsa açık gelir (eski sayfa adresleri oraya yönlendirir); kutu küçük, italik, Times New Roman, soluk.
+  var GIZLILIK = {
+    tr: ["Gizlilik", ["Yazdıkların yanıt için Anthropic'e (ABD) gider; model eğitiminde kullanılmaz, Puding'de saklanmaz.",
+                      "Güvenlik doğrulaması için Cloudflare, IP adresini ve tarayıcı bilgini görür.",
+                      "Ad, adres gibi kimlik bilgilerini yazmana gerek yok.",
+                      "18 yaş ve üstü içindir.",
+                      "Puding bir yapay zekâdır, hata yapabilir; söyledikleri bağlayıcı değildir.",
+                      "Veri sorumlusu: Enstitü Fabrika Etkinlik Organizasyon Ticaret Ltd. Şti. · kvkk@pudingai.com"],
+         ["Her kurum, her veri, her süre: ", "Aydınlatma Metni", "/odam?aydinlatma"]],
+    en: ["Privacy", ["What you write goes to Anthropic (USA) to generate a reply; it is not used to train models and is not stored by Puding.",
+                     "For security verification, Cloudflare sees your IP address and browser details.",
+                     "There is no need to write identifying details like your name or address.",
+                     "For ages 18 and over.",
+                     "Puding is an AI and can make mistakes; what it says is not binding.",
+                     "Data controller: Enstitü Fabrika Etkinlik Organizasyon Ticaret Ltd. Şti. · kvkk@pudingai.com"],
+         ["Every provider, every kind of data and every period: ", "privacy notice (KVKK, in Turkish)", "/odam?aydinlatma"]],
+    es: ["Privacidad", ["Lo que escribes se envía a Anthropic (EE. UU.) para generar una respuesta; no se usa para entrenar modelos y Puding no lo guarda.",
+                        "Para la verificación de seguridad, Cloudflare ve tu dirección IP y los datos de tu navegador.",
+                        "No hace falta que escribas datos que te identifiquen, como tu nombre o dirección.",
+                        "Solo para mayores de 18 años.",
+                        "Puding es una inteligencia artificial y puede cometer errores; lo que dice no es vinculante.",
+                        "Responsable del tratamiento: Enstitü Fabrika Etkinlik Organizasyon Ticaret Ltd. Şti. · kvkk@pudingai.com"],
+         ["Cada proveedor, cada dato y cada plazo: ", "aviso de privacidad (KVKK, en turco)", "/odam?aydinlatma"]]
+  };
   var DIL = (document.documentElement.lang || "tr").slice(0, 2);
   if (!METIN[DIL]) DIL = "tr";
   var T = METIN[DIL];
@@ -79,12 +103,34 @@
   kok.querySelector(".pd-kapat").setAttribute("aria-label", T.kapat);
   kok.querySelector(".pd-gonder").setAttribute("aria-label", T.gonder);
   Array.prototype.forEach.call(kok.querySelectorAll(".pd-alt"), function (p, i) { p.textContent = T.alt[i]; });
-  // Gizlilik sayfası yeni sekmede: görüşme yalnız bu sayfanın belleğinde, aynı sekmede gidilirse kaybolur (Alkım, 2026-11-08).
-  var gizlilikBag = el("a");
-  gizlilikBag.href = GIZLILIK[DIL][1]; gizlilikBag.target = "_blank"; gizlilikBag.rel = "noopener";
-  gizlilikBag.textContent = GIZLILIK[DIL][0]; gizlilikBag.style.color = "inherit"; gizlilikBag.style.textDecoration = "underline";
+  // Gizlilik: sayfaya gitmez, barın altında açılır (Alkım, 2026-11-16) — görüşme yalnız bu sayfanın belleğinde, başka
+  // sayfaya gidilirse kaybolurdu. Eski /gizlilik/ adresleri ana sayfaya ?gizlilik ile gelir: kutu açık başlar.
+  var gizlilikAc = el("button", "pd-gizlilik-ac", GIZLILIK[DIL][0]);
+  gizlilikAc.type = "button"; gizlilikAc.setAttribute("aria-expanded", "false"); gizlilikAc.setAttribute("aria-controls", "pd-gizlilik");
   var sonAlt = kok.querySelector(".pd-alt:last-of-type");
-  sonAlt.appendChild(document.createTextNode(" ")); sonAlt.appendChild(gizlilikBag);
+  sonAlt.appendChild(document.createTextNode(" ")); sonAlt.appendChild(gizlilikAc);
+  var gizlilikKutu = el("div", "pd-gizlilik");
+  gizlilikKutu.id = "pd-gizlilik"; gizlilikKutu.hidden = true;
+  GIZLILIK[DIL][1].forEach(function (c) { gizlilikKutu.appendChild(el("p", null, c)); });
+  var kvkk = GIZLILIK[DIL][2];
+  if (kvkk) {
+    var p = el("p", null, kvkk[0]), a = el("a", null, kvkk[1]);
+    a.href = kvkk[2]; a.target = "_blank"; a.rel = "noopener";
+    p.appendChild(a); gizlilikKutu.appendChild(p);
+  }
+  kok.appendChild(gizlilikKutu);
+  gizlilikAc.addEventListener("click", function () {
+    gizlilikKutu.hidden = !gizlilikKutu.hidden;
+    gizlilikAc.setAttribute("aria-expanded", String(!gizlilikKutu.hidden));
+  });
+  try {
+    if (/[?&]gizlilik\b/.test(location.search)) {
+      gizlilikKutu.hidden = false; gizlilikAc.setAttribute("aria-expanded", "true");
+      var temiz = location.search.replace(/([?&])gizlilik(=[^&]*)?&?/, "$1").replace(/[?&]$/, "");
+      history.replaceState(null, "", location.pathname + temiz + location.hash);
+      setTimeout(function () { gizlilikKutu.scrollIntoView({ block: "nearest" }); }, 0);
+    }
+  } catch (_) {}
 
   // Kayıt satırı (Alkım, 2026-11-09): 3. yanıttan sonra barın altında; yalnız Türkçe (EN ve ES onam metni yok). Özütle gelen kaşık ayrı, aynen kalır.
   // Kart çıkan görüşmede (kriz) ve kutu ya da kilit gelince bir daha görünmez. Yeni sekmede: bardaki konuşma eski sekmede kalır.
