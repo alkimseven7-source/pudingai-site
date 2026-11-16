@@ -33,21 +33,21 @@
   // Gizlilik kutusu (Alkım, 2026-11-16): /gizlilik/ sayfası kalktı; metin barın altında açılır kutuda. Adreste ?gizlilik
   // varsa açık gelir (eski sayfa adresleri oraya yönlendirir); kutu küçük, italik, Times New Roman, soluk.
   var GIZLILIK = {
-    tr: ["Gizlilik", ["Yazdıkların yanıt için Anthropic'e (ABD) gider; model eğitiminde kullanılmaz, Puding'de saklanmaz.",
+    tr: ["Gizlilik", ["Yazdıkların yanıt için Anthropic'e (ABD) gider; model eğitiminde kullanılmaz, sen hesabına kaydetmedikçe Puding'de saklanmaz.",
                       "Güvenlik doğrulaması için Cloudflare, IP adresini ve tarayıcı bilgini görür.",
                       "Ad, adres gibi kimlik bilgilerini yazmana gerek yok.",
                       "18 yaş ve üstü içindir.",
                       "Puding bir yapay zekâdır, hata yapabilir; söyledikleri bağlayıcı değildir.",
                       "Veri sorumlusu: Enstitü Fabrika Etkinlik Organizasyon Ticaret Ltd. Şti. · kvkk@pudingai.com"],
          ["Her kurum, her veri, her süre: ", "Aydınlatma Metni", "/odam?aydinlatma"]],
-    en: ["Privacy", ["What you write goes to Anthropic (USA) to generate a reply; it is not used to train models and is not stored by Puding.",
+    en: ["Privacy", ["What you write goes to Anthropic (USA) to generate a reply; it is not used to train models and is not stored by Puding unless you save it to your account.",
                      "For security verification, Cloudflare sees your IP address and browser details.",
                      "There is no need to write identifying details like your name or address.",
                      "For ages 18 and over.",
                      "Puding is an AI and can make mistakes; what it says is not binding.",
                      "Data controller: Enstitü Fabrika Etkinlik Organizasyon Ticaret Ltd. Şti. · kvkk@pudingai.com"],
          ["Every provider, every kind of data and every period: ", "privacy notice (KVKK, in Turkish)", "/odam?aydinlatma"]],
-    es: ["Privacidad", ["Lo que escribes se envía a Anthropic (EE. UU.) para generar una respuesta; no se usa para entrenar modelos y Puding no lo guarda.",
+    es: ["Privacidad", ["Lo que escribes se envía a Anthropic (EE. UU.) para generar una respuesta; no se usa para entrenar modelos y Puding no lo guarda salvo que lo guardes en tu cuenta.",
                         "Para la verificación de seguridad, Cloudflare ve tu dirección IP y los datos de tu navegador.",
                         "No hace falta que escribas datos que te identifiquen, como tu nombre o dirección.",
                         "Solo para mayores de 18 años.",
@@ -104,7 +104,8 @@
   kok.querySelector(".pd-gonder").setAttribute("aria-label", T.gonder);
   Array.prototype.forEach.call(kok.querySelectorAll(".pd-alt"), function (p, i) { p.textContent = T.alt[i]; });
   // Gizlilik: sayfaya gitmez, barın altında açılır (Alkım, 2026-11-16) — görüşme yalnız bu sayfanın belleğinde, başka
-  // sayfaya gidilirse kaybolurdu. Eski /gizlilik/ adresleri ana sayfaya ?gizlilik ile gelir: kutu açık başlar.
+  // sayfaya gidilirse kaybolurdu. Kutu her açılışta KAPALI: yalnız "Gizlilik"e basınca açılır; yine basınca, dışarı
+  // dokununca ya da Esc ile kapanır. Eski /gizlilik/ adresi ?gizlilik ile gelir; o da kutuyu açmaz, yalnız adresten silinir.
   var gizlilikAc = el("button", "pd-gizlilik-ac", GIZLILIK[DIL][0]);
   gizlilikAc.type = "button"; gizlilikAc.setAttribute("aria-expanded", "false"); gizlilikAc.setAttribute("aria-controls", "pd-gizlilik");
   var sonAlt = kok.querySelector(".pd-alt:last-of-type");
@@ -119,16 +120,25 @@
     p.appendChild(a); gizlilikKutu.appendChild(p);
   }
   kok.appendChild(gizlilikKutu);
-  gizlilikAc.addEventListener("click", function () {
-    gizlilikKutu.hidden = !gizlilikKutu.hidden;
-    gizlilikAc.setAttribute("aria-expanded", String(!gizlilikKutu.hidden));
+  function gizlilikGoster(ac) {
+    gizlilikKutu.hidden = !ac;
+    gizlilikAc.setAttribute("aria-expanded", String(!!ac));
+    // Kutu açıkken öneri kapıları gizlenir: sabit sütun uzayıp barı sayfanın başlığının üstüne itmesin (telefon).
+    kok.className = ac ? "pd-sohbet pd-gizlilik-acik" : "pd-sohbet";
+  }
+  gizlilikAc.addEventListener("click", function (e) {
+    e.stopPropagation();
+    gizlilikGoster(gizlilikKutu.hidden);
   });
-  try {
+  gizlilikKutu.addEventListener("click", function (e) { e.stopPropagation(); });  // kutunun içine dokunmak kapatmaz
+  document.addEventListener("click", function () { if (!gizlilikKutu.hidden) gizlilikGoster(false); });
+  document.addEventListener("keydown", function (e) {
+    if ((e.key === "Escape" || e.key === "Esc") && !gizlilikKutu.hidden) { gizlilikGoster(false); gizlilikAc.focus(); }
+  });
+  try {   // eski /gizlilik/ adresinden gelen ?gizlilik: kutuyu açmaz, yalnız adres çubuğundan silinir
     if (/[?&]gizlilik\b/.test(location.search)) {
-      gizlilikKutu.hidden = false; gizlilikAc.setAttribute("aria-expanded", "true");
       var temiz = location.search.replace(/([?&])gizlilik(=[^&]*)?&?/, "$1").replace(/[?&]$/, "");
       history.replaceState(null, "", location.pathname + temiz + location.hash);
-      setTimeout(function () { gizlilikKutu.scrollIntoView({ block: "nearest" }); }, 0);
     }
   } catch (_) {}
 
