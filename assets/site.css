@@ -96,7 +96,11 @@ body:has(.pd-sor){padding-bottom:76px}
 .pd-bar textarea::placeholder{color:var(--soluk)}
 .pd-gonder{flex:none;width:38px;height:38px;border-radius:50%;border:0;background:var(--murekkep);color:var(--murekkep-metin);font-size:18px;cursor:pointer}
 .pd-kilitli{opacity:.55}.pd-kilitli .pd-gonder{cursor:default}
-.pd-alt{margin:0;align-self:center;text-align:center;font-size:11px;line-height:1.4;color:var(--soluk-2);background:var(--cip-zemin);border-radius:8px;padding:2px 8px}
+/* Bar altı uyarıları (Alkım, 2026-11-16): küçük, italik, Times New Roman, soluk — dikkat çekmesin. Zemin kalır: bar sabit,
+   arkasından sayfa kayar. İkincisi (gizlilik notu) ayrı küçük kutu. */
+.pd-alt{margin:0;align-self:center;text-align:center;font-family:"Times New Roman",Times,serif;font-style:italic;font-size:11px;line-height:1.4;color:var(--soluk-2);background:var(--cip-zemin);border-radius:8px;padding:2px 8px}
+.pd-alt-ai{max-width:min(620px,calc(100vw - 32px));opacity:.8}
+.pd-alt-gizlilik{max-width:min(560px,calc(100vw - 32px));border:1px solid var(--cizgi);border-radius:10px;padding:5px 10px;opacity:.85}
 .pd-gizli{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 body.pd-sohbet-var{padding-bottom:170px}
 @media (prefers-reduced-motion: reduce){.pd-sohbet *,.pd-sor *{transition:none!important;animation:none!important}}
@@ -145,7 +149,7 @@ header{position:relative}
 @media (max-width: 370px){html[lang=en] .pd-nav{gap:7px!important;letter-spacing:.02em!important}}
 html[lang=en] .pd-indir,html[lang=es] .pd-indir{font-size:11px;letter-spacing:.02em}
 html[lang=es] .pd-indir{font-size:10px}
-.pd-alt+.pd-alt{margin-top:-4px}
+.pd-alt+.pd-alt{margin-top:2px}  /* gizlilik notu ayrı kutu: üst üste binmesin (Alkım, 2026-11-16) */
 /* EN ve ES'de bar altı iki satır: telefonda ilk ekran ve sayfa sonu kapanmasın */
 @media (max-width: 520px){
   html[lang=en] .pd-alt,html[lang=es] .pd-alt{font-size:10px;line-height:1.3;padding:1px 6px}

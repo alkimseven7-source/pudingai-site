@@ -13,21 +13,21 @@
     tr: {oneriler: ["Bugün aklımda bir şey var", "Puding AI nedir?", "Bir karar eşiğindeyim"], kaydol: "Devam etmek için kaydol →", yaziyor: "Puding yazıyor", yaz: "Puding'e yaz", yerTutucu: "Puding'e yaz…", gonder: "Gönder", kapat: "Kapat",
          kutuIlk: "Burada tanışma kadar konuşabiliyoruz.", kutuDolu: "Bugünlük burada doluyuz.",
          kutuSonu: "Devam etmek istiyorsan kaşığa bas; kendi görüşmen başlasın. Puding şimdilik ücretsiz.",
-         alt: ["Puding bir yapay zekâdır, hata yapabilir.", "* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Ad, adres gibi kimlik bilgilerini yazmana gerek yok. 18+ Güvenlik doğrulaması için Cloudflare kullanılır."],
+         alt: ["Puding bir yapay zekâdır, hata yapabilir. Söyledikleri bağlayıcı değildir; tıbbi, hukuki ya da mali tavsiye sayılmaz. Kararlar sana aittir.", "* Yazdıkların yanıt için Anthropic'e gider, Puding'de saklanmaz. Ad, adres gibi kimlik bilgilerini yazmana gerek yok. 18+ Güvenlik doğrulaması için Cloudflare kullanılır."],
          kasik: "devam etmek istiyorsan kaşığa bas", kasikKisa: "kaşığa bas",
          dogrulama: "Doğrulama tamamlanamadı. Sayfayı yenileyip yeniden dene.", yavas: "Biraz yavaşlayalım; birazdan yeniden yazabilirsin.",
          yanitYok: "Şu an yanıt üretilemedi. Biraz sonra tekrar dene.", baglanti: "Şu an bağlantı yok. Biraz sonra tekrar dene."},
     en: {oneriler: ["I have something on my mind today", "What is Puding AI?", "I'm on the threshold of a decision"], yaziyor: "Puding is writing", yaz: "Write to Puding", yerTutucu: "Write something to Puding…", gonder: "Send", kapat: "Close",
          kutuIlk: "Here we can talk just enough to get acquainted.", kutuDolu: "We're full here for today.",
          yakinda: "Puding's app is coming in English soon.",
-         alt: ["Puding is an AI and can make mistakes.",
+         alt: ["Puding is an AI and can make mistakes. What it says is not binding; it is not medical, legal or financial advice. The decisions are yours.",
                "* What you write is sent to Anthropic to generate a reply; it isn't stored by Puding. No need to share identifying details like your name or address. 18+ Cloudflare is used for security verification."],
          dogrulama: "Verification didn't complete. Reload the page and try again.", yavas: "Let's slow down a little; you can write again in a moment.",
          yanitYok: "No reply could be generated right now. Try again in a moment.", baglanti: "No connection right now. Try again in a moment."},
     es: {oneriler: ["Hoy tengo algo en la cabeza", "¿Qué es Puding AI?", "Estoy en el umbral de una decisión"], yaziyor: "Puding está escribiendo", yaz: "Escríbele a Puding", yerTutucu: "Escríbele algo a Puding…", gonder: "Enviar", kapat: "Cerrar",
          kutuIlk: "Aquí podemos hablar lo justo para conocernos.", kutuDolu: "Por hoy estamos completos aquí.",
          yakinda: "La aplicación de Puding llegará pronto en español.",
-         alt: ["Puding es una inteligencia artificial y puede cometer errores.",
+         alt: ["Puding es una inteligencia artificial y puede cometer errores. Lo que dice no es vinculante; no constituye asesoramiento médico, jurídico ni financiero. Las decisiones son tuyas.",
                "* Lo que escribes se envía a Anthropic para generar una respuesta; Puding no lo guarda. No hace falta que compartas datos que te identifiquen, como tu nombre o dirección. 18+ Para la verificación de seguridad se usa Cloudflare."],
          dogrulama: "No se pudo completar la verificación. Recarga la página e inténtalo de nuevo.", yavas: "Vayamos un poco más despacio; podrás escribir de nuevo en un momento.",
          yanitYok: "Ahora mismo no se ha podido generar una respuesta. Inténtalo de nuevo en un momento.", baglanti: "Ahora mismo no hay conexión. Inténtalo de nuevo en un momento."}
@@ -67,7 +67,8 @@
     '<form class="pd-bar" autocomplete="off"><label class="pd-gizli" for="pd-girdi"></label>' +
     '<textarea id="pd-girdi" rows="1" maxlength="1000"></textarea>' +
     '<button type="submit" class="pd-gonder">↑</button></form>' +
-    T.alt.map(function () { return '<p class="pd-alt"></p>'; }).join("");
+    // Alkım, 2026-11-16: ilki yapay zekâ uyarısı (soluk, dikkat çekmeden), ikincisi gizlilik notu (ayrı küçük kutu)
+    T.alt.map(function (_, i) { return '<p class="pd-alt ' + (i ? "pd-alt-gizlilik" : "pd-alt-ai") + '"></p>'; }).join("");
   var kutu = kok.querySelector(".pd-kutu"), akis = kok.querySelector(".pd-akis"), kartYeri = kok.querySelector(".pd-kartlar"), form = kok.querySelector(".pd-bar"),
       girdi = kok.querySelector("textarea"), kapilar = kok.querySelector(".pd-kapilar");
   T.oneriler.forEach(function (m) {
