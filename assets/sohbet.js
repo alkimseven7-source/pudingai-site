@@ -332,6 +332,34 @@
   document.body.classList.add("pd-sohbet-var");
   (document.getElementById("pd-sohbet-yeri") || document.body).appendChild(kok);
 
+  // Telefonda bar (Alkım, 2026-11-19): klavye açıkken klavyenin hemen üstünde durur; genişliği ve yeri
+  // görünen alandan (visualViewport) hesaplanır, böylece sayfa kaysa ya da yakınlaştırılsa da taşmaz.
+  var gorunen = window.visualViewport;
+  if (gorunen) {
+    var bekleyen = false;
+    var barYerle = function () {
+      bekleyen = false;
+      var en = Math.min(680, gorunen.width - 32);
+      if (!(en > 0)) return;
+      var klavye = Math.max(0, Math.round(window.innerHeight - gorunen.height - gorunen.offsetTop));
+      kok.style.width = Math.round(en) + "px";
+      kok.style.left = Math.round(gorunen.offsetLeft + (gorunen.width - en) / 2) + "px";
+      kok.style.transform = "none";
+      kok.style.bottom = klavye + "px";
+      kok.style.setProperty("--pd-kutu-boy", Math.round(gorunen.height * 0.62) + "px");
+    };
+    var yerleIste = function () {
+      if (bekleyen) return;
+      bekleyen = true;
+      if (window.requestAnimationFrame) window.requestAnimationFrame(barYerle);
+      else setTimeout(barYerle, 0);
+    };
+    gorunen.addEventListener("resize", yerleIste);
+    gorunen.addEventListener("scroll", yerleIste);
+    window.addEventListener("orientationchange", yerleIste);
+    barYerle();
+  }
+
   // Sözlükten gelen: soru bar alanında hazır durur, kişi gönderir; adres çubuğundan kalkar
   if (new URLSearchParams(location.search).get("sor") === "neli") {
     girdi.value = SOZLUK_SORUSU; kapilar.hidden = true;
