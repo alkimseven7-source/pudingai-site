@@ -180,13 +180,24 @@
     akis.scrollTop = akis.scrollHeight;
     return b;
   }
+  // findahelpline.com tıklanabilir olsun (Alkım, 2026-11-18); metin düz metin olarak eklenir, HTML üretilmez
+  function kartSatiri(metin) {
+    var p = el("p", null, null), s = String(metin || ""), i = s.indexOf("findahelpline.com");
+    if (i < 0) { p.textContent = s; return p; }
+    p.appendChild(document.createTextNode(s.slice(0, i)));
+    var a = el("a", null, "findahelpline.com");
+    a.href = "https://findahelpline.com"; a.target = "_blank"; a.rel = "noopener noreferrer";
+    p.appendChild(a);
+    p.appendChild(document.createTextNode(s.slice(i + "findahelpline.com".length)));
+    return p;
+  }
   function kartlar(liste) {
     (liste || []).forEach(function (k) {
       var id = "pd-kart-" + k.tur;
       if (document.getElementById(id)) return;
       var c = el("div", "pd-kart"); c.id = id;
       if (k.baslik) c.appendChild(el("strong", null, k.baslik));
-      (k.satirlar || []).forEach(function (s) { c.appendChild(el("p", null, s)); });
+      (k.satirlar || []).forEach(function (s) { c.appendChild(kartSatiri(s)); });
       kartYeri.appendChild(c); kartYeri.hidden = false;  // akışın dışında, yazı alanının üstünde: görüşme uzasa da görünür alanda kalır (Alkım, 2026-11-09)
       akis.scrollTop = akis.scrollHeight;
     });
