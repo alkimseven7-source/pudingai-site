@@ -92,7 +92,8 @@ body:has(.pd-sor){padding-bottom:76px}
 .pd-kapi:hover .pd-kapi-ikon,.pd-kapi:focus-visible .pd-kapi-ikon{animation:pd-sallan .7s ease-in-out}
 @keyframes pd-sallan{0%,100%{transform:rotate(0)}25%{transform:rotate(-7deg)}60%{transform:rotate(6deg)}85%{transform:rotate(-2deg)}}
 .pd-bar{display:flex;align-items:flex-end;gap:8px;background:var(--bar-zemin);border:1px solid var(--bar-cizgi);border-radius:22px;padding:8px 8px 8px 16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.pd-bar textarea{flex:1;min-width:0;resize:none;border:0;background:transparent;font:inherit;font-size:16px;line-height:1.4;color:var(--metin);padding:8px 0;outline:none;max-height:140px}
+/* Yazı alanı sabit iki satır (Alkım, 2026-11-24): yazarken büyümez, taşan metin alanın içinde kayar; bar ve sayfa kıpırdamaz */
+.pd-bar textarea{flex:1;min-width:0;resize:none;border:0;background:transparent;font:inherit;font-size:16px;line-height:1.4;color:var(--metin);padding:0;margin:8px 0;outline:none;box-sizing:content-box;height:2.8em;overflow-y:auto;overscroll-behavior:contain}
 .pd-bar textarea::placeholder{color:var(--soluk)}
 .pd-gonder{flex:none;width:38px;height:38px;border-radius:50%;border:0;background:var(--murekkep);color:var(--murekkep-metin);font-size:18px;cursor:pointer}
 .pd-kilitli{opacity:.55}.pd-kilitli .pd-gonder{cursor:default}

@@ -87,7 +87,7 @@
     '<div class="pd-akis" role="log" aria-live="polite"></div><div class="pd-kartlar" aria-live="polite" hidden></div></div><div class="pd-ts"></div>' +
     '<div class="pd-kapilar"></div>' +
     '<form class="pd-bar" autocomplete="off"><label class="pd-gizli" for="pd-girdi"></label>' +
-    '<textarea id="pd-girdi" rows="1" maxlength="1000"></textarea>' +
+    '<textarea id="pd-girdi" rows="2" maxlength="1000"></textarea>' +
     '<button type="submit" class="pd-gonder">↑</button></form>' +
     // Alkım, 2026-11-16: barın altında tek satır — "18+ · Yapay zekâ hata yapabilir. Gizlilik"
     T.alt.map(function () { return '<p class="pd-alt"></p>'; }).join("");
@@ -323,9 +323,8 @@
   Array.prototype.forEach.call(document.querySelectorAll("[data-yakinda]"), function (a) {
     a.addEventListener("click", function (e) { e.preventDefault(); ac(); yakindaKutusu(T.yakinda); });
   });
-  form.addEventListener("submit", function (e) { e.preventDefault(); var m = girdi.value; girdi.value = ""; girdi.style.height = ""; gonder(m); });
+  form.addEventListener("submit", function (e) { e.preventDefault(); var m = girdi.value; girdi.value = ""; gonder(m); });
   girdi.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
-  girdi.addEventListener("input", function () { girdi.style.height = ""; girdi.style.height = Math.min(girdi.scrollHeight, 140) + "px"; });
   girdi.addEventListener("focus", function () { tsHazirla(); if (akis.children.length) ac(); });
   kok.addEventListener("pointerdown", tsHazirla);
 
