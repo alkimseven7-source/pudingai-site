@@ -226,4 +226,13 @@ body.pd-sohbet-var:has(.pd-kapilar:not([hidden])){padding-bottom:300px}
 @media (max-width:520px){html[lang] .pd-acilis.pd-kapi-acilis{padding:8px 20px 56px!important;gap:12px!important}}
 /* Nedir ve Sözlük menüsünde tek düğme (Alkım, 2026-11-27) */
 .pd-kapi-menu{display:inline-flex;align-items:center;min-height:44px;padding:12px 20px;box-sizing:border-box;border-radius:999px;border:1.5px solid var(--murekkep);background:var(--murekkep);color:var(--murekkep-metin)!important;text-decoration:none;letter-spacing:.06em;white-space:nowrap}
-@media (max-width:520px){.pd-kapi-menu{padding:8px 14px;min-height:40px;letter-spacing:.02em}.pd-nav:has(.pd-kapi-menu){gap:16px!important}}
+/* Telefonda Nedir/Sözlük menüsü tek satır (Alkım, 2026-11-27): aralık ve harf aralığı daralır, tema simgesi alt satıra düşmez */
+@media (max-width:520px){
+  .pd-nav:has(.pd-kapi-menu){gap:10px!important;letter-spacing:.06em!important}
+  .pd-kapi-menu{font-size:12px;padding:8px 12px;min-height:40px;letter-spacing:.02em}
+  .pd-nav:has(.pd-kapi-menu) .pd-tema-dugme{width:34px;min-width:34px;padding:0}
+}
+@media (max-width:350px){
+  .pd-nav:has(.pd-kapi-menu){gap:8px!important;letter-spacing:.02em!important}
+  .pd-kapi-menu{font-size:11px;padding:6px 10px;letter-spacing:0}
+}
