@@ -217,3 +217,13 @@ body.pd-sohbet-var:has(.pd-kapilar:not([hidden])){padding-bottom:300px}
 }
 /* tek kapı (Alkım, 2026-11-27): düğmenin altındaki satır */
 .pd-kapi-not{margin:-8px 0 0;font-size:15px;line-height:1.5;color:var(--metin-3);max-width:46ch}
+/* Tek kapı ilk ekranı (Alkım, 2026-11-27): tek sütun; başlık → Puding (telefonda ekranın ~%35'i) → tam genişlik düğme → tortu
+   cümlesi. 390×844'te düğme kaydırmadan görünür. Alttaki bant değişmedi. */
+.pd-kapi-acilis{max-width:720px;margin:0 auto;padding:32px 24px 80px!important;display:flex!important;flex-direction:column;align-items:stretch;gap:20px!important}
+.pd-kapi-acilis .pd-acilis-resim{display:block;align-self:center;width:auto!important;height:min(35vh,340px)!important;height:min(35svh,340px)!important;max-width:100%!important;margin:4px 0 8px}
+.pd-kapi-buyuk{display:flex!important;justify-content:center!important;width:100%;min-height:64px!important;font-size:18px!important;padding:18px 24px!important}
+.pd-kapi-acilis .pd-kapi-not{margin:0;max-width:none}
+@media (max-width:520px){html[lang] .pd-acilis.pd-kapi-acilis{padding:8px 20px 56px!important;gap:12px!important}}
+/* Nedir ve Sözlük menüsünde tek düğme (Alkım, 2026-11-27) */
+.pd-kapi-menu{display:inline-flex;align-items:center;min-height:44px;padding:12px 20px;box-sizing:border-box;border-radius:999px;border:1.5px solid var(--murekkep);background:var(--murekkep);color:var(--murekkep-metin)!important;text-decoration:none;letter-spacing:.06em;white-space:nowrap}
+@media (max-width:520px){.pd-kapi-menu{padding:8px 14px;min-height:40px;letter-spacing:.02em}.pd-nav:has(.pd-kapi-menu){gap:16px!important}}
