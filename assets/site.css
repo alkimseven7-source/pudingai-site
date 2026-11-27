@@ -215,3 +215,5 @@ body.pd-sohbet-var:has(.pd-kapilar:not([hidden])){padding-bottom:300px}
   .pd-indir{width:48px;height:48px;font-size:10px;letter-spacing:.02em}
   html[lang=en] .pd-indir,html[lang=es] .pd-indir{font-size:9px}
 }
+/* tek kapı (Alkım, 2026-11-27): düğmenin altındaki satır */
+.pd-kapi-not{margin:-8px 0 0;font-size:15px;line-height:1.5;color:var(--metin-3);max-width:46ch}
